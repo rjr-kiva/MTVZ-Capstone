@@ -1,0 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// here every changes done run - npx prisma generate to apply changes!
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User_Data {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  email        String? @unique
+  password        String?
+}
