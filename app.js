@@ -25,6 +25,7 @@ const settingsRouter = require('./routes/routeSettings');
 const profileRouter = require('./routes/routeProfile');
 const employeeApplicantsRouter = require('./routes/routeEmployeesApplicants');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
+const employeeRouterGrid = require('./routes/routeEmployeesGrid');
 
 // sid.signature
 
@@ -44,6 +45,7 @@ app.use('/', settingsRouter);
 app.use('/', profileRouter);
 app.use('/', employeeApplicantsRouter);
 app.use('/', addEmployeeRouter);
+app.use('/', employeeRouterGrid);
 
 
 app.listen(port, () => {
