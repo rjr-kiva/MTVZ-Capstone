@@ -21,11 +21,10 @@ const employeeRouter = require('./routes/routeEmployees');
 const companyRouter = require('./routes/routeCompany');
 const calendarRouter = require('./routes/routeCalendar');
 const recordsRouter = require('./routes/routeRecords');
-const settingsRouter = require('./routes/routeSettings');
 const profileRouter = require('./routes/routeProfile');
 const employeeApplicantsRouter = require('./routes/routeEmployeesApplicants');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
-const employeeRouterGrid = require('./routes/routeEmployeesGrid');
+const blacklistedRouter = require('./routes/routeBlacklisted');
 
 // sid.signature
 
@@ -41,11 +40,10 @@ app.use('/', employeeRouter);
 app.use('/', companyRouter);
 app.use('/', calendarRouter);
 app.use('/', recordsRouter);
-app.use('/', settingsRouter);
 app.use('/', profileRouter);
 app.use('/', employeeApplicantsRouter);
 app.use('/', addEmployeeRouter);
-app.use('/', employeeRouterGrid);
+app.use('/', blacklistedRouter);
 
 
 app.listen(port, () => {
