@@ -144,78 +144,90 @@
 
                     <div class="col-xl-12 col-sm-12 col-6">
                         <div class="row">
+
                             <div class="col-xl-6 col-sm-12 col-12 ">
-                                <div class="card ">
-                                    <div class="card-header">
-                                        <h2 class="card-titles">Employment Details<span>Insert text here.</span></h2>
+                                <form method="POST" action="/add-employee">
+                                    <div class="card ">
+                                        <div class="card-header">
+                                            <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                            </h2>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xl-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <input type="text" id="name" name="name" placeholder="Name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="age" name="age" placeholder="Age">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="sex" name="sex" placeholder="Sex">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="dateofbirth" name="dateofbirth"
+                                                            placeholder="Birthdate">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="address" name="address"
+                                                            placeholder="Address">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="contactNumber" name="contactNumber"
+                                                            placeholder="Contact No.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="Position" name="Position"
+                                                            placeholder="Position">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="SSS" name="SSS" placeholder="SSS No.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="Pagibig" name="Pagibig"
+                                                            placeholder="Pag-ibig No.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="PhilHealth" name="PhilHealth"
+                                                            placeholder="Phil Health No.">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xl-12 col-sm-12 col-12">
-                                                <div class="form-group">
-                                                    <input type="text" id="name" placeholder="Name">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-4 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="age" placeholder="Age">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="sex" placeholder="Sex">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="dateofbirth" placeholder="Birthdate">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-12 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="address" placeholder="Address">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-6 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="contactNumber" placeholder="Contact No.">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="Position" placeholder="Position">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-4 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="SSS" placeholder="SSS No.">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="Pagibig" placeholder="Pag-ibig No.">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="PhilHealth" placeholder="Phil Health No.">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="form-btn">
+                                        <button type="submit" class="btn btn-apply">Add Employee</button>
+                                        <a href="/employees" class="btn btn-secondary ">Cancel</a>
                                     </div>
-                                </div>
-                                <div class="form-btn">
-                                    <a href="#" class="btn btn-apply w-auto">Add Employee</a>
-                                    <a href="/employees" class="btn btn-secondary">Cancel</a>
-                                </div>
+                                </form>
                             </div>
 
                             <div class="col-xl-6 col-sm-12 col-12 ">
@@ -229,6 +241,7 @@
                                             width="600px" height="w-auto">
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>

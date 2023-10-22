@@ -5,11 +5,45 @@ const api_key = '9c99a256-5171-11ee-ad03-b253ea03939d';
 const model_id1 = 'a2ecc173-e686-4b6d-946c-c4f03b91a4ef'; // Add the first model's ID
 const model_id2 = '51ab4370-6b52-403f-8a3b-a00616adbb6e'; // Add the second model's ID
 
+const { PrismaClient } = require('@prisma/client');
+var prisma = new PrismaClient();
+
 exports.getAddEmployee = (req, res) => {
     res.render('viewAddEmployee');
 }
 
-exports.postAddEmployee = (req, res) => {
+exports.postAddEmployee = async (req, res) => {
+
+    const { name, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth } = req.body;
+
+    const addEmployee = await prisma.employee_Data.create({ /* TIP for prisma. (declaration)  if schema.prisma model starting word is capitalized it should be lower cased here.*/
+        data: {
+            name: name,
+            age: age,
+            sex: sex,
+            address: address,
+            contactNo: contactNumber,
+            birthdate: dateofbirth,
+            sssNo: SSS,
+            philHealthNo: PhilHealth,
+            pagibigNo: Pagibig,
+            position: Position
+        }
+    });
+
+    console.log("name: " + name + "\n", 
+                "age: " + age + "\n",
+                "sex: " + sex + "\n",
+                "dateofbirth: " + dateofbirth + "\n",
+                "address: " + address + "\n",
+                "contactNumber: " + contactNumber + "\n",
+                "Position: " + Position + "\n",
+                "SSS: " + SSS + "\n",
+                "Pagibig: " + Pagibig + "\n",
+                "PhilHealth: " + PhilHealth)
+
+    console.log("Record added successfully.")
+
     res.render('viewAddEmployee');
 }
 

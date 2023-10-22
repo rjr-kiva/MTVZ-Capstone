@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 router.get('/add-employee', controllerAddEmployee.getAddEmployee);
-router.post('/', controllerAddEmployee.postAddEmployee);
+router.post('/add-employee', controllerAddEmployee.postAddEmployee);
 
 const upload = multer({ storage: storage });
 
