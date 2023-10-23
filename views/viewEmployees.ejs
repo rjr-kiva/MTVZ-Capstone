@@ -164,7 +164,7 @@
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
                                 <div class="col-xl-12 col-sm-8 col-12 ">
-                                    <label class="employee_count">50 Contractual Employees</label>
+                                    <label class="employee_count"><%= employeeInfo.length %> Contractual Employees</label>
                                 </div>
                             </div>
                         </div>
@@ -178,28 +178,29 @@
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Approved By</th>
-                                                <th>Company</th>
-                                                <th>Position</th>
+                                                <th>Age</th>
+                                                <th>Address</th>
+                                                <th>Contact Number</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% employeeInfo.forEach((dataInfo) =>  {%>
                                             <tr>
                                                 <td>
                                                     <div class="table-img">
                                                         <a href="profile.html">
                                                             <img src="assets/img/profiles/avatar-13.jpg" alt="profile"
-                                                                class="img-table" /><label>Sean Black</label>
+                                                                class="img-table" /><label> <%= dataInfo.name %> </label>
                                                         </a>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <label class="action_label">Richard Wilson </label>
+                                                    <label class="action_label"> <%= dataInfo.age %> </label>
                                                 </td>
 
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Team Lead</label></td>
+                                                <td><label> <%= dataInfo.address %> </label></td>
+                                                <td><label> <%= dataInfo.contactNo %> </label></td>
                                                 <td class="tab-select">
                                                     <select class="select">
                                                         <option value="active">Active</option>
@@ -207,143 +208,7 @@
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html">
-                                                            <img src="assets/img/profiles/avatar-16.jpg" alt="profile"
-                                                                class="img-table" /><label>Linda Craver</label>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <label class="action_label">Richard Wilson </label>
-                                                </td>
-
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Team Lead</label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html">
-                                                            <img src="assets/img/profiles/avatar-17.jpg" alt="profile"
-                                                                class="img-table" />
-                                                        </a>
-                                                        <label>Jenni Sims</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <label class="action_label">Richard Wilson </label>
-                                                </td>
-
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Team Lead</label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html">
-                                                            <img src="assets/img/profiles/avatar-19.jpg" alt="profile"
-                                                                class="img-table" />
-                                                        </a>
-                                                        <label>Stacey Linville</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <label class="action_label">Richard Wilson </label>
-                                                </td>
-
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Team Lead</label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html">
-                                                            <img src="assets/img/profiles/avatar-14.jpg" alt="profile"
-                                                                class="img-table" />
-                                                        </a>
-                                                        <label>Maria Cotton</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <label class="action_label">Richard Wilson </label>
-                                                </td>
-
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Team Lead</label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html">
-                                                            <img src="assets/img/profiles/avatar-18.jpg" alt="profile"
-                                                                class="img-table" />
-                                                        </a>
-                                                        <label>John Gibbs</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <label class="action_label">Richard Wilson </label>
-                                                </td>
-
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Team Lead</label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html">
-                                                            <img src="assets/img/profiles/avatar-10.jpg" alt="profile"
-                                                                class="img-table" />
-                                                        </a>
-                                                        <label>Richard Wilson</label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <label class="action_label in_active">No </label>
-                                                </td>
-
-                                                <td><label>Focus Technologies </label></td>
-                                                <td><label>Super Admin</label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                            <% }) %>
                                         </tbody>
                                     </table>
                                 </div>
