@@ -21,6 +21,8 @@ exports.postLogin = async (req, res) => {
         console.log(user)
 
         if (user) {
+            req.session.userId = user.id
+            req.session.userData = user
             res.redirect('/home');
         } else {
             res.render('viewlogin');

@@ -1,14 +1,36 @@
 const express = require('express');
 const path = require('path');
-const session = require('express-session'); 
+const session = require('express-session');
+const bodyParser = require('body-parser');
+
+const {
+    NODE_ENV = 'development',
+
+    SESSION_NAME = 'sid',
+    SESSION_SECRET = 'ssh!quiet,it\'asecret!',
+    //SESSION_LIFETIME = TWO_HOURS
+} = process.env
+
+const IN_PROD = NODE_ENV === 'production'
 
 const app = express();
 const port = 3000;
 
-var sessionAAA = {
-    authorized: false,
-    username: 'guest'
-};
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+
+app.use(session({
+    name: SESSION_NAME,
+    resave: false,
+    saveUninitialized: false,
+    secret: SESSION_SECRET,
+    cookie: {
+        //maxAge: SESSION_LIFETIME,
+        sameSite: true,
+        secure: IN_PROD
+    }
+}))
 
 //view engine setup
 app.set('view engine', 'ejs');
@@ -44,6 +66,10 @@ app.use('/', profileRouter);
 app.use('/', employeeApplicantsRouter);
 app.use('/', addEmployeeRouter);
 app.use('/', blacklistedRouter);
+app.get('/', (req,res) => {
+    const { userId } = req.session;
+    res.redirect('/login')
+})
 
 
 app.listen(port, () => {
