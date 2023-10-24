@@ -1,366 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Add Employees Page</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Add Employees Page</title>
 
-    <link rel="shortcut icon" href="assets/img/ECTAG.png">
+        <link rel="shortcut icon" href="assets/img/ECTAG.png">
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+        <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
 
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <div class="main-wrapper">
+        <div class="main-wrapper">
 
-        <div class="header">
+            <div class="header">
 
-            <div class="header-left">
-                <a href="/home" class="logo">
-                    <img src="assets/img/ECTAG.png" alt="Logo">
-                </a>
-                <a href="/home" class="logo logo-small">
-                    <img src="assets/img/ECTAG.png" alt="Logo" width="30" height="30">
-                </a>
-                <a href="javascript:void(0);" id="toggle_btn">
-                    <span class="bar-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                </a>
-            </div>
-
-            <a class="mobile_btn" id="mobile_btn">
-                <i class="fas fa-bars"></i>
-            </a>
-
-            <ul class="nav user-menu">
-
-                <li class="nav-item dropdown has-arrow main-drop">
-                    <p class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <span class="user-img">
-                            <img src="assets/img/profiles/sample.jpg" alt="">
-                            <span class="status online"></span>
+                <div class="header-left">
+                    <a href="/home" class="logo">
+                        <img src="assets/img/ECTAG.png" alt="Logo">
+                    </a>
+                    <a href="/home" class="logo logo-small">
+                        <img src="assets/img/ECTAG.png" alt="Logo" width="30" height="30">
+                    </a>
+                    <a href="javascript:void(0);" id="toggle_btn">
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </span>
-                        <b><span>Enrico Zonio</span></b>
-                    </p>
-
-                </li>
-            </ul>
-        </div>
-
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-inner slimscroll">
-                <div class="sidebar-contents">
-                    <div id="sidebar-menu" class="sidebar-menu">
-                        <div class="mobile-show">
-                            <div class="offcanvas-menu">
-                                <div class="user-info align-center bg-theme text-center">
-                                    <span class="lnr lnr-cross  text-white" id="mobile_btn_close">X</span>
-                                    <a href="javascript:void(0)" class="d-block menu-style text-white">
-                                        <div class="user-avatar d-inline-block mr-3">
-                                            <img src="assets/img/profiles/avatar-18.jpg" alt="user avatar"
-                                                class="rounded-circle" width="50">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img">
-                                    <span>Dashboard</span></a>
-                            </li>
-                            <li class="active">
-                                <a href="/employees"><img src="assets/img/employee.svg" alt="sidebar_img"><span>
-                                        Employees</span></a>
-                            </li>
-                            <li>
-                                <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
-                                    <span>Calendar</span></a>
-                            </li>
-
-                            <li>
-                                <a href="/records"><img src="assets/img/report.svg"
-                                        alt="sidebar_img"><span>Records</span></a>
-                            </li>
-
-                        </ul>
-                        <ul class="logout">
-                            <li>
-                                <a href="profile.html"><img src="assets/img/logout.svg" alt="sidebar_img"><span>Log
-                                        out</span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    </a>
                 </div>
+
+                <a class="mobile_btn" id="mobile_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+
+                <ul class="nav user-menu">
+
+                    <li class="nav-item dropdown has-arrow main-drop">
+                        <p class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <span class="user-img">
+                                <% if (userData.gender=="Male" ) { %>
+                                    <img src="assets/img/profiles/hrMale.png" alt="">
+                                    <% } else if (userData.gender=="Female" ) { %>
+                                        <img src="assets/img/profiles/hrFemale.png" alt="">
+                                        <% } %>
+                                            <span class="status online"></span>
+                            </span>
+                            <b><span>
+                                    <%= userData.name %>
+                                </span></b>
+                        </p>
+                    </li>
+                </ul>
             </div>
-        </div>
 
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+                    <div class="sidebar-contents">
+                        <div id="sidebar-menu" class="sidebar-menu">
+                            <div class="mobile-show">
+                                <div class="offcanvas-menu">
+                                    <div class="user-info align-center bg-theme text-center">
+                                        <span class="lnr lnr-cross  text-white" id="mobile_btn_close">X</span>
+                                        <a href="javascript:void(0)" class="d-block menu-style text-white">
+                                            <div class="user-avatar d-inline-block mr-3">
+                                                <img src="assets/img/profiles/avatar-18.jpg" alt="user avatar"
+                                                    class="rounded-circle" width="50">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
 
-        <div class="page-wrapper">
-            <div class="content container-fluid">
-                <div class="row">
-                    <div class="col-xl-12 col-sm-12 col-12 ">
-                        <div class="breadcrumb-path mb-4">
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png" class="mr-2"
-                                            alt="breadcrumb" />Home</a></li>
-                                <li class="breadcrumb-item active"> Employees</li>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img">
+                                        <span>Dashboard</span></a>
+                                </li>
+                                <li class="active">
+                                    <a href="/employees"><img src="assets/img/employee.svg" alt="sidebar_img"><span>
+                                            Employees</span></a>
+                                </li>
+                                <li>
+                                    <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
+                                        <span>Calendar</span></a>
+                                </li>
+
+                                <li>
+                                    <a href="/records"><img src="assets/img/report.svg"
+                                            alt="sidebar_img"><span>Records</span></a>
+                                </li>
+
                             </ul>
-                            <h3>Create Employees</h3>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-12 col-sm-12 col-12">
-                        <div class="breadcrumb-path mb-4">
-                            <h3>Upload via OCR</h3>
-                            <input type="file" id="fileInput">
-                            <button onclick="uploadFile()"  >Upload File</button>
-
-                            <!-- Loading indicator -->
-                            <div id="loadingIndicator" style="display: none;">
-                                <br>
-                                <p>Uploading...</p>
-                                <progress id="uploadProgress" max="100" value="0"></progress>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-12 col-sm-12 col-6">
-                        <div class="row">
-
-                            <div class="col-xl-6 col-sm-12 col-12 ">
-                                <form method="POST" action="/add-employee">
-                                    <div class="card ">
-                                        <div class="card-header">
-                                            <h2 class="card-titles">Employment Details<span>Insert text here.</span>
-                                            </h2>
-                                        </div>
-
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-xl-12 col-sm-12 col-12">
-                                                    <div class="form-group">
-                                                        <input type="text" id="name" name="name" placeholder="Name" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="age" name="age" placeholder="Age" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-4 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="sex" name="sex" placeholder="Sex" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-4 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="dateofbirth" name="dateofbirth"
-                                                            placeholder="Birthdate" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-12 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="address" name="address"
-                                                            placeholder="Address" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-6 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="contactNumber" name="contactNumber"
-                                                            placeholder="Contact No." required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Position" name="Position"
-                                                            placeholder="Position" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="SSS" name="SSS" placeholder="SSS No." required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-4 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Pagibig" name="Pagibig"
-                                                            placeholder="Pag-ibig No." required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-4 col-sm-12 col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="PhilHealth" name="PhilHealth"
-                                                            placeholder="Phil Health No." required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-btn">
-                                        <button type="submit" class="btn btn-apply">Add Employee</button>
-                                        <a href="/employees" class="btn btn-secondary ">Cancel</a>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="col-xl-6 col-sm-12 col-12 ">
-                                <div class="right-wrapper">
-                                    <!-- Display the uploaded file as a link -->
-                                    <div id="uploadedFile"></div>
-
-                                    <!-- Display the uploaded image -->
-                                    <div id="uploadedImage">
-                                        <img id="imagePreview" src="assets/img/ECTAG.png" alt="Uploaded Image"
-                                            width="600px" height="w-auto">
-                                    </div>
-                                </div>
-
-                            </div>
-
+                            <ul class="logout">
+                                <li>
+                                    <a href="profile.html"><img src="assets/img/logout.svg" alt="sidebar_img"><span>Log
+                                            out</span></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+                    <div class="row">
+                        <div class="col-xl-12 col-sm-12 col-12 ">
+                            <div class="breadcrumb-path mb-4">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
+                                                class="mr-2" alt="breadcrumb" />Home</a></li>
+                                    <li class="breadcrumb-item active"> Employees</li>
+                                </ul>
+                                <h3>Create Employees</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-sm-12 col-12">
+                            <div class="breadcrumb-path mb-4">
+                                <h3>Upload via OCR</h3>
+                                <input type="file" id="fileInput">
+                                <button onclick="uploadFile()">Upload File</button>
+
+                                <!-- Loading indicator -->
+                                <div id="loadingIndicator" style="display: none;">
+                                    <br>
+                                    <p>Uploading...</p>
+                                    <progress id="uploadProgress" max="100" value="0"></progress>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-sm-12 col-6">
+                            <div class="row">
+
+                                <div class="col-xl-6 col-sm-12 col-12 ">
+                                    <form method="POST" action="/add-employee">
+                                        <div class="card ">
+                                            <div class="card-header">
+                                                <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                                </h2>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <input type="text" id="name" name="name" placeholder="Name"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-4 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="age" name="age" placeholder="Age"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="sex" name="sex" placeholder="Sex"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="dateofbirth" name="dateofbirth"
+                                                                placeholder="Birthdate" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="address" name="address"
+                                                                placeholder="Address" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="contactNumber" name="contactNumber"
+                                                                placeholder="Contact No." required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="Position" name="Position"
+                                                                placeholder="Position" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-4 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="SSS" name="SSS" placeholder="SSS No."
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="Pagibig" name="Pagibig"
+                                                                placeholder="Pag-ibig No." required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-sm-12 col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="PhilHealth" name="PhilHealth"
+                                                                placeholder="Phil Health No." required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-btn">
+                                            <button type="submit" class="btn btn-apply">Add Employee</button>
+                                            <a href="/employees" class="btn btn-secondary ">Cancel</a>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-xl-6 col-sm-12 col-12 ">
+                                    <div class="right-wrapper">
+                                        <!-- Display the uploaded file as a link -->
+                                        <div id="uploadedFile"></div>
+
+                                        <!-- Display the uploaded image -->
+                                        <div id="uploadedImage">
+                                            <img id="imagePreview" src="assets/img/ECTAG.png" alt="Uploaded Image"
+                                                width="600px" height="w-auto">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <script>
+            function uploadFile() {
+                const fileInput = document.getElementById('fileInput');
+                const file = fileInput.files[0];
 
-    <script>
-        function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
+                console.log(file);
 
-            console.log(file);
-
-            if (!file) {
-                alert('Please select a file to upload.');
-                return;
-            }
-
-            // Show the loading indicator
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            loadingIndicator.style.display = 'block';
-
-            const formData = new FormData();
-            formData.append('file', file);
-
-            const xhr = new XMLHttpRequest();
-
-            // Upload progress event listener
-            xhr.upload.addEventListener('progress', (event) => {
-                if (event.lengthComputable) {
-                    const percentComplete = (event.loaded / event.total) * 100;
-                    const uploadProgress = document.getElementById('uploadProgress');
-                    uploadProgress.value = percentComplete;
+                if (!file) {
+                    alert('Please select a file to upload.');
+                    return;
                 }
-            });
 
-            xhr.open('POST', '/upload', true);
+                // Show the loading indicator
+                const loadingIndicator = document.getElementById('loadingIndicator');
+                loadingIndicator.style.display = 'block';
 
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // To hide the UI for the loading
-                    loadingIndicator.style.display = 'none';
+                const formData = new FormData();
+                formData.append('file', file);
 
-                    const data = JSON.parse(xhr.responseText);
-                    displayExtractedData(data);
+                const xhr = new XMLHttpRequest();
 
-                    // Display the uploaded file as a link
-                    const uploadedFileDiv = document.getElementById('uploadedFile');
-
-                    // Remove the old link if it exists
-                    const oldFileLink = uploadedFileDiv.querySelector('a');
-                    if (oldFileLink) {
-                        uploadedFileDiv.removeChild(oldFileLink);
+                // Upload progress event listener
+                xhr.upload.addEventListener('progress', (event) => {
+                    if (event.lengthComputable) {
+                        const percentComplete = (event.loaded / event.total) * 100;
+                        const uploadProgress = document.getElementById('uploadProgress');
+                        uploadProgress.value = percentComplete;
                     }
+                });
 
-                    const fileLink = document.createElement('a');
-                    fileLink.href = URL.createObjectURL(file);
-                    fileLink.textContent = `Uploaded File: ${file.name}`;
-                    fileLink.target = '_blank';
-                    uploadedFileDiv.appendChild(fileLink);
+                xhr.open('POST', '/upload', true);
 
-                    // Display the uploaded image
-                    const uploadedImageDiv = document.getElementById('uploadedImage');
-                    const imagePreview = document.getElementById('imagePreview');
-                    imagePreview.src = URL.createObjectURL(file);
-                }
-            };
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // To hide the UI for the loading
+                        loadingIndicator.style.display = 'none';
 
-            xhr.send(formData);
-        }
+                        const data = JSON.parse(xhr.responseText);
+                        displayExtractedData(data);
 
-        function displayExtractedData(data) {
-            const nameElement = document.getElementById('name');
-            const addressElement = document.getElementById('address');
-            const contactNumberElement = document.getElementById('contactNumber');
-            const emailElement = document.getElementById('dateofbirth');
-            const sexElement = document.getElementById('sex');
-            const ageElement = document.getElementById('age');
+                        // Display the uploaded file as a link
+                        const uploadedFileDiv = document.getElementById('uploadedFile');
 
-            nameElement.value = data.Name;
-            addressElement.value = data.Address;
-            contactNumberElement.value = data.Contact_Number;
-            emailElement.value = data.Date_of_Birth;
-            //positionElement.value = data.Position;
-            sexElement.value = data.Sex;
-            //educationElement.value = data.Education;
-            ageElement.value = data.Age;
+                        // Remove the old link if it exists
+                        const oldFileLink = uploadedFileDiv.querySelector('a');
+                        if (oldFileLink) {
+                            uploadedFileDiv.removeChild(oldFileLink);
+                        }
 
-            if (data.Sex) {
-                const sexValue = data.Sex.toLowerCase();
-                if (sexValue === 'f') {
-                    sexElement.value = 'Female';
-                } else if (sexValue === 'm') {
-                    sexElement.value = 'Male';
-                } else {
-                    sexElement.value = data.Sex;
-                }
-            } else {
-                sexElement.value = '';
+                        const fileLink = document.createElement('a');
+                        fileLink.href = URL.createObjectURL(file);
+                        fileLink.textContent = `Uploaded File: ${file.name}`;
+                        fileLink.target = '_blank';
+                        uploadedFileDiv.appendChild(fileLink);
+
+                        // Display the uploaded image
+                        const uploadedImageDiv = document.getElementById('uploadedImage');
+                        const imagePreview = document.getElementById('imagePreview');
+                        imagePreview.src = URL.createObjectURL(file);
+                    }
+                };
+
+                xhr.send(formData);
             }
-        }
-    </script>
 
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
+            function displayExtractedData(data) {
+                const nameElement = document.getElementById('name');
+                const addressElement = document.getElementById('address');
+                const contactNumberElement = document.getElementById('contactNumber');
+                const emailElement = document.getElementById('dateofbirth');
+                const sexElement = document.getElementById('sex');
+                const ageElement = document.getElementById('age');
 
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+                nameElement.value = data.Name;
+                addressElement.value = data.Address;
+                contactNumberElement.value = data.Contact_Number;
+                emailElement.value = data.Date_of_Birth;
+                //positionElement.value = data.Position;
+                sexElement.value = data.Sex;
+                //educationElement.value = data.Education;
+                ageElement.value = data.Age;
 
-    <script src="assets/js/feather.min.js"></script>
+                if (data.Sex) {
+                    const sexValue = data.Sex.toLowerCase();
+                    if (sexValue === 'f') {
+                        sexElement.value = 'Female';
+                    } else if (sexValue === 'm') {
+                        sexElement.value = 'Male';
+                    } else {
+                        sexElement.value = data.Sex;
+                    }
+                } else {
+                    sexElement.value = '';
+                }
+            }
+        </script>
 
-    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="assets/js/jquery-3.6.0.min.js"></script>
 
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
 
-    <script src="assets/js/script.js"></script>
-</body>
+        <script src="assets/js/feather.min.js"></script>
+
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <script src="assets/plugins/select2/js/select2.min.js"></script>
+
+        <script src="assets/js/script.js"></script>
+    </body>
 
 </html>

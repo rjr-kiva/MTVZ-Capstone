@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -18,6 +19,7 @@
                     <script src="assets/js/respond.min.js"></script>
                 <![endif]-->
     </head>
+
     <body>
         <div class="main-wrapper">
             <div class="header">
@@ -30,11 +32,11 @@
                         <img src="assets/img/ECTAG.png" alt="Logo" width="30" height="30">
                     </a>
                     <a href="javascript:void(0);" id="toggle_btn">
-                    <span class="bar-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
                     </a>
                 </div>
 
@@ -54,18 +56,24 @@
                     <li class="nav-item dropdown has-arrow main-drop">
                         <p class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <span class="user-img">
-                                <img src="assets/img/profiles/sample.jpg" alt="">
-                                <span class="status online"></span>
+                                <% if (userData.gender=="Male" ) { %>
+                                    <img src="assets/img/profiles/hrMale.png" alt="">
+                                    <% } else if (userData.gender=="Female" ) { %>
+                                        <img src="assets/img/profiles/hrFemale.png" alt="">
+                                        <% } %>
+                                            <span class="status online"></span>
                             </span>
-                            <b><span>Enrico Zonio</span></b>
+                            <b><span>
+                                    <%= userData.name %>
+                                </span></b>
                         </p>
-                        
                     </li>
                 </ul>
 
                 <div class="dropdown mobile-user-menu show">
 
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                            class="fa fa-ellipsis-v"></i></a>
 
                     <div class="dropdown-menu dropdown-menu-right ">
                         <a class="dropdown-item" href="profile.html">My Profile</a>
@@ -85,7 +93,8 @@
                                         <span class="lnr lnr-cross  text-white" id="mobile_btn_close">X</span>
                                         <a href="javascript:void(0)" class="d-block menu-style text-white">
                                             <div class="user-avatar d-inline-block mr-3">
-                                                <img src="assets/img/profiles/avatar-18.jpg" alt="user avatar" class="rounded-circle" width="50">
+                                                <img src="assets/img/profiles/avatar-18.jpg" alt="user avatar"
+                                                    class="rounded-circle" width="50">
                                             </div>
                                         </a>
                                     </div>
@@ -99,25 +108,30 @@
                                     </div>
                                 </div>
                             </div>
-                        <ul>
-                            <li class="active">
-                                <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img"> <span>Dashboard</span></a>
-                            </li>
-                            <li>
-                                <a href="/employees"><img src="assets/img/employee.svg" alt="sidebar_img"><span>Employees</span></a>
-                            </li>
-                            <li>
-                                <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img"> <span>Calendar</span></a>
-                            </li>
-                            <li>
-                                <a href="/records"><img src="assets/img/report.svg" alt="sidebar_img"><span>Records</span></a>
-                            </li>
-                        </ul>
-                        <ul class="logout">
-                            <li>
-                                <a href="/logout"><img src="assets/img/logout.svg" alt="sidebar_img"><span>Log out</span></a>
-                            </li>
-                        </ul>
+                            <ul>
+                                <li class="active">
+                                    <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img">
+                                        <span>Dashboard</span></a>
+                                </li>
+                                <li>
+                                    <a href="/employees"><img src="assets/img/employee.svg"
+                                            alt="sidebar_img"><span>Employees</span></a>
+                                </li>
+                                <li>
+                                    <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
+                                        <span>Calendar</span></a>
+                                </li>
+                                <li>
+                                    <a href="/records"><img src="assets/img/report.svg"
+                                            alt="sidebar_img"><span>Records</span></a>
+                                </li>
+                            </ul>
+                            <ul class="logout">
+                                <li>
+                                    <a href="/logout"><img src="assets/img/logout.svg" alt="sidebar_img"><span>Log
+                                            out</span></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -126,14 +140,19 @@
             <div class="page-wrapper">
                 <div class="content container-fluid">
                     <div class="page-name 	mb-4">
-                        <h4 class="m-0"><img src="assets/img/profiles/sample.jpg" class="mr-1" alt="profile" /> Welcome HR Manager</h4>
-                        <label>Sun, 29 Nov 2019</label>
+                        <h4 class="m-0"><img src="assets/img/profiles/hrMale.png" class="mr-1" alt="profile" />
+                            <%= userData.name %>
+                        </h4>
+                        <label>
+                            <Sun, 29 Nov 2019>
+                        </label>
                     </div>
                     <div class="row mb-4">
                         <div class="col-xl-6 col-sm-12 col-12">
                             <div class="breadcrumb-path ">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png" class="mr-3" alt="breadcrumb" />Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
+                                                class="mr-3" alt="breadcrumb" />Home</a></li>
                                     <li class="breadcrumb-item active">Dashboard</li>
                                 </ul>
                                 <h3>HR Manager Dashboard</h3>
@@ -212,28 +231,31 @@
                                         <h5 class="card-title">Total Employees</h5>
                                     </div>
                                 </div>
-                            <div class="card-body">
-                                <div id="invoice_chart"></div>
-                                <div class="text-center text-muted">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="mt-4">
-                                                <p class="mb-2 text-truncate"><i class="fas fa-circle text-primary mr-1"></i> Business</p>
+                                <div class="card-body">
+                                    <div id="invoice_chart"></div>
+                                    <div class="text-center text-muted">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="mt-4">
+                                                    <p class="mb-2 text-truncate"><i
+                                                            class="fas fa-circle text-primary mr-1"></i> Business</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="mt-4">
-                                                <p class="mb-2 text-truncate"><i class="fas fa-circle text-success mr-1"></i> Testing</p>
+                                            <div class="col-4">
+                                                <div class="mt-4">
+                                                    <p class="mb-2 text-truncate"><i
+                                                            class="fas fa-circle text-success mr-1"></i> Testing</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="mt-4">
-                                                <p class="mb-2 text-truncate"><i class="fas fa-circle text-danger mr-1"></i> Development</p>
+                                            <div class="col-4">
+                                                <div class="mt-4">
+                                                    <p class="mb-2 text-truncate"><i
+                                                            class="fas fa-circle text-danger mr-1"></i> Development</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <div class="col-xl-6 d-flex">
@@ -523,4 +545,5 @@
 
         <script src="assets/js/script.js"></script>
     </body>
+
 </html>

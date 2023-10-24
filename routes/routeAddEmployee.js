@@ -6,6 +6,23 @@ const multer = require('multer');
 
 const { v4: uuidv4 } = require('uuid');
 
+const redirectLogin = (req, res, next) => {
+    if (!req.session.userId) {
+        res.redirect('/login')
+    }else{
+        next()
+    }
+}
+
+const redirectHome = (req, res, next) => {
+
+    if (req.session.userId) {
+        res.redirect('/home')
+    }else{
+        next()
+    }
+}
+
 // Configure Multer for file upload
 const storage = multer.diskStorage({
     destination: './uploads',
@@ -14,7 +31,7 @@ const storage = multer.diskStorage({
     },
 });
 
-router.get('/add-employee', controllerAddEmployee.getAddEmployee);
+router.get('/add-employee', redirectLogin, controllerAddEmployee.getAddEmployee);
 router.post('/add-employee', controllerAddEmployee.postAddEmployee);
 
 const upload = multer({ storage: storage });

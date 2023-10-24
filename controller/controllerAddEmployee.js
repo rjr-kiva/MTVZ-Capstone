@@ -9,7 +9,7 @@ const { PrismaClient } = require('@prisma/client');
 var prisma = new PrismaClient();
 
 exports.getAddEmployee = (req, res) => {
-    res.render('viewAddEmployee');
+    res.render('viewAddEmployee', {userData: req.session.userData});
 }
 
 exports.postAddEmployee = async (req, res) => {
@@ -44,7 +44,7 @@ exports.postAddEmployee = async (req, res) => {
 
     console.log("Record added successfully.")
 
-    res.render('viewAddEmployee');
+    res.render('viewAddEmployee', {userData: req.session.userData});
 }
 
 exports.postUpload = (req, res) => {

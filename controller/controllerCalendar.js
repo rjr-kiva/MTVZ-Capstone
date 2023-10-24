@@ -1,5 +1,5 @@
 exports.getCalendar = (req, res) => {
-    res.render('viewCalendar');
+    res.render('viewCalendar', {userData: req.session.userData});
 }
 
 exports.postCalendar = (req, res) => {

@@ -17,6 +17,7 @@ model User_Data {
   email           String? @unique
   password        String?
   name            String?
+  gender          String?
 }
 
 model Employee_Data {

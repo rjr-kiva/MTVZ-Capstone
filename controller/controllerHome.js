@@ -1,5 +1,5 @@
 exports.getHome = (req, res) => {
-    res.render('viewHome');
+    res.render('viewHome', {userData: req.session.userData});
 }
 
 exports.postHome = (req, res) => {

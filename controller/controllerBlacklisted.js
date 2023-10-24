@@ -1,5 +1,5 @@
 exports.getBlacklisted = (req, res) => {
-    res.render('viewBlacklisted');
+    res.render('viewBlacklisted', {userData: req.session.userData});
 }
 
 exports.postBlacklisted = (req, res) => {

@@ -59,23 +59,23 @@
                     <i class="fas fa-bars"></i>
                 </a>
 
-
                 <ul class="nav user-menu">
-
-
-
 
                     <li class="nav-item dropdown has-arrow main-drop">
                         <p class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <span class="user-img">
-                                <img src="assets/img/profiles/sample.jpg" alt="">
-                                <span class="status online"></span>
+                                <% if (userData.gender=="Male" ) { %>
+                                    <img src="assets/img/profiles/hrMale.png" alt="">
+                                    <% } else if (userData.gender=="Female" ) { %>
+                                        <img src="assets/img/profiles/hrFemale.png" alt="">
+                                        <% } %>
+                                            <span class="status online"></span>
                             </span>
-                            <b><span>Enrico Zonio</span></b>
+                            <b><span>
+                                    <%= userData.name %>
+                                </span></b>
                         </p>
-                        
                     </li>
-
                 </ul>
                 <div class="dropdown mobile-user-menu show">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
