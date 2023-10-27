@@ -160,13 +160,29 @@
 
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-xl-12 col-sm-12 col-12">
+                                                    <div class="col-xl-4 col-sm-12 col-12">
                                                         <div class="form-group">
-                                                            <input type="text" id="name" name="name" placeholder="Name"
-                                                                required>
+                                                            <input type="text" id="lastname" name="lastname"
+                                                                placeholder="Last Name" required>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-xl-4 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <input type="text" id="firstname" name="firstname"
+                                                                placeholder="First Name" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-4 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <input type="text" id="middlename" name="middlename"
+                                                                placeholder="Middle Name" required>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="col-xl-4 col-sm-12 col-12 ">
                                                         <div class="form-group">
@@ -218,14 +234,14 @@
                                                     </div>
                                                     <div class="col-xl-4 col-sm-12 col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Pagibig" name="Pagibig"
-                                                                placeholder="Pag-ibig No." required>
+                                                            <input type="text" id="PhilHealth" name="PhilHealth"
+                                                                placeholder="Phil Health No." required>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-4 col-sm-12 col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="PhilHealth" name="PhilHealth"
-                                                                placeholder="Phil Health No." required>
+                                                            <input type="text" id="Pagibig" name="Pagibig"
+                                                                placeholder="Pag-ibig No." required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -327,21 +343,34 @@
             }
 
             function displayExtractedData(data) {
-                const nameElement = document.getElementById('name');
+                const lastnameElement = document.getElementById('lastname');
+                const firstnameElement = document.getElementById('firstname');
+                const middlenameElement = document.getElementById('middlename');
                 const addressElement = document.getElementById('address');
                 const contactNumberElement = document.getElementById('contactNumber');
                 const emailElement = document.getElementById('dateofbirth');
                 const sexElement = document.getElementById('sex');
                 const ageElement = document.getElementById('age');
+                const positionElement = document.getElementById('Position');
+                const SSSElement = document.getElementById('SSS');
+                const pagibigElement = document.getElementById('Pagibig');
+                const philhealthElement = document.getElementById('PhilHealth');
 
-                nameElement.value = data.Name;
+
+                lastnameElement.value = data.Last_Name;
+                firstnameElement.value = data.First_Name;
+                middlenameElement.value = data.Middle_Name;
                 addressElement.value = data.Address;
                 contactNumberElement.value = data.Contact_Number;
                 emailElement.value = data.Date_of_Birth;
-                //positionElement.value = data.Position;
+                positionElement.value = data.Position;
                 sexElement.value = data.Sex;
                 //educationElement.value = data.Education;
                 ageElement.value = data.Age;
+                // added 3rd model
+                SSSElement.value = data.SSS_No;
+                pagibigElement.value = data.Pagibig_No;
+                philhealthElement.value = data.PhilHealth_No;
 
                 if (data.Sex) {
                     const sexValue = data.Sex.toLowerCase();

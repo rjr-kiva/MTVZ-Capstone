@@ -22,7 +22,9 @@ model User_Data {
 
 model Employee_Data {
   id              String @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
+  lastName        String?
+  middleName      String? 
+  firstName       String?
   age             String?
   sex             String?
   address         String?
