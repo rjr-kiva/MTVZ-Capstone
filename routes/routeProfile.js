@@ -19,7 +19,7 @@ const redirectHome = (req, res, next) => {
     }
 }
 
-router.get('/profile', redirectLogin, controllerProfile.getProfile);
+router.get('/profile/:id', redirectLogin, controllerProfile.getProfile);
 router.post('/profile', controllerProfile.postProfile);
 
 module.exports = router;

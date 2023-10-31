@@ -17,11 +17,13 @@ exports.getAddEmployee = (req, res) => {
 
 exports.postAddEmployee = async (req, res) => {
 
-    const { name, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth } = req.body;
+    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth } = req.body;
 
     const addEmployee = await prisma.employee_Data.create({ /* TIP for prisma. (declaration)  if schema.prisma model starting word is capitalized it should be lower cased here.*/
         data: {
-            name: name,
+            lastName: lastname,
+            firstName: firstname,
+            middleName: middlename,
             age: age,
             sex: sex,
             address: address,
@@ -30,11 +32,14 @@ exports.postAddEmployee = async (req, res) => {
             sssNo: SSS,
             philHealthNo: PhilHealth,
             pagibigNo: Pagibig,
-            position: Position
+            position: Position,
+            status: "Pending"
         }
     });
 
-    console.log("name: " + name + "\n", 
+    console.log("lastName: " + lastname + "\n",
+                "firstName: " + firstname + "\n", 
+                "middleName: " + middlename + "\n", 
                 "age: " + age + "\n",
                 "sex: " + sex + "\n",
                 "dateofbirth: " + dateofbirth + "\n",
@@ -47,7 +52,7 @@ exports.postAddEmployee = async (req, res) => {
 
     console.log("Record added successfully.")
 
-    res.render('viewAddEmployee', {userData: req.session.userData});
+    res.redirect('/employees')
 }
 
 exports.postUpload = (req, res) => {

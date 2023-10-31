@@ -18,6 +18,7 @@ model User_Data {
   password        String?
   name            String?
   gender          String?
+  role            String?
 }
 
 model Employee_Data {
@@ -34,4 +35,5 @@ model Employee_Data {
   philHealthNo    String?
   pagibigNo       String?
   position        String?
+  status          String?
 }

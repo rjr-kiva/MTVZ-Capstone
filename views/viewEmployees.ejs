@@ -194,24 +194,17 @@
                                             <tr>
                                                 <td>
                                                     <div class="table-img">
-                                                        <a href="profile.html">
+                                                        <a href="/profile/<%= dataInfo.id %>">
                                                             <img src="assets/img/profiles/avatar-13.jpg" alt="profile"
-                                                                class="img-table" /><label> <%= dataInfo.name %> </label>
+                                                                class="img-table" />
                                                         </a>
+                                                        <label> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <label class="action_label"> <%= dataInfo.age %> </label>
-                                                </td>
-
-                                                <td><label> <%= dataInfo.address %> </label></td>
-                                                <td><label> <%= dataInfo.contactNo %> </label></td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Active</option>
-                                                        <option value="blacklisted">Blacklisted</option>
-                                                    </select>
-                                                </td>
+                                                <td><label> <%= dataInfo.age %> </label></td>
+                                                <td><label><%= dataInfo.address %> </label></td>
+                                                <td><label><%= dataInfo.contactNo %> </label></td>
+                                                <td><label class="action_label"><%= dataInfo.status %> </label></td>
                                             </tr>
                                             <% }) %>
                                         </tbody>

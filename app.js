@@ -53,7 +53,6 @@ const blacklistedRouter = require('./routes/routeBlacklisted');
 
 //use
 app.use(express.urlencoded({ extended: true }));
-    //app.set('views', path.join(__dirname, 'views')); - not sure what this is but it can be removed
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', loginRouter);
 app.use('/', homeRouter);
