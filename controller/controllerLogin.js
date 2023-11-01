@@ -1,8 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const bcrypt = require('bcrypt');
 
 exports.getLogin = (req, res) => {
-    
     res.render('viewLogin');
    
 }
@@ -14,15 +14,18 @@ exports.postLogin = async (req, res) => {
         const {email, password} = req.body;
         console.log(email, password)
 
-        let user = await prisma.user_Data.findUnique({
-            where: {email, password}
+        const user = await prisma.user_Data.findUnique({
+            where: {email}
         });
 
-        console.log(user)
+        const hashword = bcrypt.compare(password, user.password)
 
-        if (user) {
+        if (user && hashword) {
             req.session.userId = user.id
             req.session.userData = user
+
+            console.log(user)
+
             res.redirect('/home');
         } else {
             res.render('viewlogin');
