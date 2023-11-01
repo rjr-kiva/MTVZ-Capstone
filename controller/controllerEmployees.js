@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 var prisma = new PrismaClient();
 
 exports.getEmployees = async (req, res) => {
-    const employeeInfo = await prisma.employee_Data.findMany();
+    const employeeInfo = await prisma.applicant_Data.findMany();
     res.render('viewEmployees', {employeeInfo: employeeInfo, userData: req.session.userData});
 }
 

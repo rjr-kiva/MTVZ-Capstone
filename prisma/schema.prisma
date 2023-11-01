@@ -21,7 +21,7 @@ model User_Data {
   role            String?
 }
 
-model Employee_Data {
+model Applicant_Data {
   id              String @id @default(auto()) @map("_id") @db.ObjectId
   lastName        String?
   middleName      String? 
