@@ -44,7 +44,6 @@ const companyRouter = require('./routes/routeCompany');
 const calendarRouter = require('./routes/routeCalendar');
 const recordsRouter = require('./routes/routeRecords');
 const profileRouter = require('./routes/routeProfile');
-const employeeApplicantsRouter = require('./routes/routeEmployeesApplicants');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
 const blacklistedRouter = require('./routes/routeBlacklisted');
 
@@ -62,7 +61,6 @@ app.use('/', companyRouter);
 app.use('/', calendarRouter);
 app.use('/', recordsRouter);
 app.use('/', profileRouter);
-app.use('/', employeeApplicantsRouter);
 app.use('/', addEmployeeRouter);
 app.use('/', blacklistedRouter);
 app.get('/', (req,res) => {

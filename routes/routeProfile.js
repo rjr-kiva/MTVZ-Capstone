@@ -20,6 +20,6 @@ const redirectHome = (req, res, next) => {
 }
 
 router.get('/profile/:id', redirectLogin, controllerProfile.getProfile);
-router.post('/profile', controllerProfile.postProfile);
+router.post('/update/:id', controllerProfile.postUpdate);
 
 module.exports = router;

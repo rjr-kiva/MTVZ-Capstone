@@ -133,7 +133,7 @@
                             </ul>
                             <ul class="logout">
                                 <li>
-                                    <a href="profile.html"><img src="assets/img/logout.svg" alt="sidebar_img"><span>Log
+                                    <a href="/logout"><img src="assets/img/logout.svg" alt="sidebar_img"><span>Log
                                             out</span></a>
                                 </li>
                             </ul>
@@ -157,19 +157,12 @@
                             </div>
                         </div>
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
-                            <div class="head-link-set">
-                                <ul>
-                                    <li><a class="active" href="/employees">All</a></li>
-
-                                    <li><a href="/applicants">Applicants</a></li>
-                                </ul>
-                                <a class="btn-add" href="/add-employee"><i data-feather="plus"></i> Add Person</a>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
-                                <div class="col-xl-12 col-sm-8 col-12 ">
+                                <div class="col-xl-10 col-sm-8 col-12 ">
                                     <label class="employee_count"><%= employeeInfo.length %> Contractual Employees</label>
+                                </div>
+                                <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
+                                    <a class="btn-add" href="/add-employee"><i data-feather="plus"></i> Add Applicant</a>
                                 </div>
                             </div>
                         </div>
