@@ -37,3 +37,35 @@ model Applicant_Data {
   position        String?
   status          String?
 }
+
+model Employee_Data {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  lastName        String?
+  middleName      String? 
+  firstName       String?
+  age             String?
+  sex             String?
+  address         String?
+  contactNo       String?
+  birthdate       String?
+  sssNo           String?
+  philHealthNo    String?
+  pagibigNo       String?
+  position        String?
+}
+
+model Blacklisted_Data {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  lastName        String?
+  middleName      String? 
+  firstName       String?
+  age             String?
+  sex             String?
+  address         String?
+  contactNo       String?
+  birthdate       String?
+  sssNo           String?
+  philHealthNo    String?
+  pagibigNo       String?
+  position        String?
+}
