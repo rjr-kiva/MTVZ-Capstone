@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controllerEmployees = require('../controller/controllerEmployees');
+const controllerApplicants = require('../controller/controllerApplicants');
 
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
@@ -19,7 +19,7 @@ const redirectHome = (req, res, next) => {
     }
 }
 
-router.get('/employees', redirectLogin, controllerEmployees.getEmployees);
-router.post('/employees', controllerEmployees.postEmployees);
+router.get('/applicants', redirectLogin, controllerApplicants.getApplicants);
+router.post('/applicants', controllerApplicants.postApplicants);
 
 module.exports = router;

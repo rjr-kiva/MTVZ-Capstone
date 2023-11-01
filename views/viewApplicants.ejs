@@ -117,8 +117,8 @@
                                         <span>Dashboard</span></a>
                                 </li>
                                 <li class="active">
-                                    <a href="/employees"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
-                                            Employees</span></a>
+                                    <a href="/applicants"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
+                                            Applicants</span></a>
                                 </li>
                                 <% if(userData.role == "Admin") {%>
                                     <li>
@@ -154,15 +154,15 @@
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
                                                 class="mr-2" alt="breadcrumb" />Home</a></li>
-                                    <li class="breadcrumb-item active"> Employees</li>
+                                    <li class="breadcrumb-item active"> Applicants</li>
                                 </ul>
-                                <h3>Employees</h3>
+                                <h3>Applicants</h3>
                             </div>
                         </div>
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
                                 <div class="col-xl-10 col-sm-8 col-12 ">
-                                    <label class="employee_count"><%= employeeInfo.length %> Contractual Employees</label>
+                                    <label class="employee_count"><%= employeeInfo.length %> Contractual Applicants</label>
                                 </div>
                                 <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
                                     <a class="btn-add" href="/add-employee"><i data-feather="plus"></i> Add Person</a>
@@ -172,7 +172,7 @@
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="card">
                                 <div class="table-heading">
-                                    <h2>Employees</h2>
+                                    <h2>Applicants</h2>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table  custom-table no-footer">

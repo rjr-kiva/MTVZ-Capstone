@@ -52,7 +52,7 @@ exports.postAddEmployee = async (req, res) => {
 
     console.log("Record added successfully.")
 
-    res.redirect('/employees')
+    res.redirect('/applicants')
 }
 
 exports.postUpload = (req, res) => {

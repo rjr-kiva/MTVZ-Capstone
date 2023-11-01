@@ -33,6 +33,6 @@ exports.postUpdate = async (req, res) => {
         }
     });
 
-    res.redirect('/employees')
+    res.redirect('/applicants')
 
 }
