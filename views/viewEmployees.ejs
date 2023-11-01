@@ -113,23 +113,26 @@
                             </div>
                             <ul>
                                 <li>
-                                    <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img">
+                                    <a href="/home"><img src="/assets/img/home.svg" alt="sidebar_img">
                                         <span>Dashboard</span></a>
                                 </li>
                                 <li class="active">
-                                    <a href="/employees"><img src="assets/img/employee.svg" alt="sidebar_img"><span>
+                                    <a href="/employees"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
                                             Employees</span></a>
                                 </li>
+                                <% if(userData.role == "Admin") {%>
+                                    <li>
+                                        <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
+                                    </li>
+                                <% } %>
                                 <li>
-                                    <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
+                                    <a href="/calendar"><img src="/assets/img/calendar.svg" alt="sidebar_img">
                                         <span>Calendar</span></a>
                                 </li>
-
                                 <li>
-                                    <a href="/records"><img src="assets/img/report.svg"
+                                    <a href="/records"><img src="/assets/img/report.svg"
                                             alt="sidebar_img"><span>Records</span></a>
                                 </li>
-
                             </ul>
                             <ul class="logout">
                                 <li>
@@ -162,7 +165,7 @@
                                     <label class="employee_count"><%= employeeInfo.length %> Contractual Employees</label>
                                 </div>
                                 <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
-                                    <a class="btn-add" href="/add-employee"><i data-feather="plus"></i> Add Applicant</a>
+                                    <a class="btn-add" href="/add-employee"><i data-feather="plus"></i> Add Person</a>
                                 </div>
                             </div>
                         </div>

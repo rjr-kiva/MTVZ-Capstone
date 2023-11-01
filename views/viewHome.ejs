@@ -117,6 +117,11 @@
                                     <a href="/employees"><img src="assets/img/employee.svg"
                                             alt="sidebar_img"><span>Employees</span></a>
                                 </li>
+                                <% if(userData.role == "Admin") {%>
+                                    <li>
+                                        <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
+                                    </li>
+                                <% } %>
                                 <li>
                                     <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
                                         <span>Calendar</span></a>
