@@ -70,4 +70,5 @@ model Blacklisted_Data {
   pagibigNo       String?
   position        String?
   status          String?
+  reason          String?
 }

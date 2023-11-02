@@ -164,7 +164,7 @@
                                     <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
                                                 class="mr-2" alt="breadcrumb">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active"> Blacklist</li>
+                                    <li class="breadcrumb-item active"> Records</li>
                                 </ul>
                                 <h3>Blacklist</h3>
                             </div>
@@ -187,6 +187,7 @@
                                                 <th>Age </th>
                                                 <th>Address</th>
                                                 <th>Contact Number</th>
+                                                <th>Reason for Blacklisting</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -194,7 +195,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="table-img">
-                                                        <a href="profile.html"><img
+                                                        <a href="/blacklisted-profile/<%= dataInfo.id %>"><img
                                                                 src="/assets/img/profiles/avatar-10.jpg" alt="profile"
                                                                 class="img-table"></a>
                                                         <label> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
@@ -208,6 +209,9 @@
                                                 </td>
                                                 <td>
                                                     <label><%= dataInfo.contactNo %></label>
+                                                </td>
+                                                <td>
+                                                    <label><%= dataInfo.reason %></label>
                                                 </td>
                                             </tr>
                                             <% }) %>

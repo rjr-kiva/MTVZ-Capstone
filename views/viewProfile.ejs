@@ -123,7 +123,7 @@
                                 <a href="/home"><img src="/assets/img/home.svg" alt="sidebar_img">
                                     <span>Dashboard</span></a>
                             </li>
-                            <li class="active">
+                            <li <% if(profileData.status == "Pending") { %> class="active" <% } %> >
                                 <a href="/applicants"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
                                     Applicants</span></a>
                             </li>
@@ -137,7 +137,7 @@
                                     <span>Calendar</span></a>
                             </li>
 
-                            <li>
+                            <li <% if(profileData.status == "Employee" || profileData.status == "Blacklisted" ) { %> class="active" <% } %> >
                                 <a href="/records"><img src="/assets/img/report.svg"
                                         alt="sidebar_img"><span>Records</span></a>
                             </li>
@@ -163,149 +163,428 @@
                                 <li class="breadcrumb-item"><a href="index.html"><img src="/assets/img/dash.png"
                                             class="mr-2" alt="breadcrumb">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active"> Profile</li>
+                                <li class="breadcrumb-item active">
+                                    <% if (profileData.status == "Pending") { %>
+                                        Applicants
+                                    <% } else if (profileData.status == "Employee" || profileData.status == "Blacklisted") { %>
+                                        Records
+                                    <% } %>
+                                </li>
                             </ul>
-                            <h3>Profile </h3>
+                            <h3>
+                                <% if (profileData.status == "Pending") { %>
+                                    Applicant Profile
+                                <% } else if (profileData.status == "Employee") { %>
+                                    Employee Profile
+                                <% } else if (profileData.status == "Blacklisted") {%>
+                                    Blacklist Profile
+                                <% } %>
+                            </h3>
                         </div>
                     </div>
-                    <div class="col-xl-12 col-sm-12 col-6">
-                        <form method="POST" action="/update/<%= profileData.id %>">
-                            <div class="card ">
-                                <div class="card-header">
-                                    <h2 class="card-titles">Employment Details<span>Insert text here.</span>
-                                    </h2>
+
+                    <% if (profileData.status == "Pending") { %>
+
+                        <!-- Applicant Table -->
+
+                        <div class="col-xl-12 col-sm-12 col-6">
+                            <form method="POST" action="/applicant-update/<%= profileData.id %>">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="lastname" name="lastname" placeholder="Last Name"
+                                                        value="<%= profileData.lastName %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="firstname" name="firstname" placeholder="First Name"
+                                                        value="<%= profileData.firstName %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="middlename" name="middlename"
+                                                        placeholder="Middle Name" value="<%= profileData.middleName %>" required
+                                                        <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="age" name="age" placeholder="Age"
+                                                        value="<%= profileData.age %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="sex" name="sex" placeholder="Sex"
+                                                        value="<%= profileData.sex %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="dateofbirth" name="dateofbirth"
+                                                        placeholder="Birthdate" value="<%= profileData.birthdate %>" required <%
+                                                        if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="address" name="address"
+                                                        value="<%= profileData.address %>" placeholder="Address" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="contactNumber" name="contactNumber"
+                                                        value="<%= profileData.contactNo %>" placeholder="Contact No." required
+                                                        <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Position" name="Position"
+                                                        value="<%= profileData.position %>" placeholder="Position" required <%
+                                                        if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="SSS" name="SSS" placeholder="SSS No."
+                                                        value="<%= profileData.sssNo %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="PhilHealth" name="PhilHealth"
+                                                        value="<%= profileData.philHealthNo %>" placeholder="Phil Health No."
+                                                        required <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Pagibig" name="Pagibig"
+                                                        value="<%= profileData.pagibigNo %>" placeholder="Pag-ibig No." required
+                                                        <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <select name="status" id="status" onchange="reasonBlacklisted()" <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                        <option value="Pending" <% if(profileData.status=="Pending" ) {%>
+                                                            selected <% } %> > Pending </option>
+                                                        <option value="Accepted" <% if(profileData.status=="Accepted" ) {%>
+                                                            selected <% } %> > Accepted </option>
+                                                        <option value="Blacklisted" <% if(profileData.status=="Blacklisted" )
+                                                            {%> selected <% } %> > Blacklisted </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="reason" name="reason" style="visibility: hidden;" placeholder="Reason for Blacklisting">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="card-body">
 
-                                    <div class="row">
-                                        <div class="col-xl-4 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <input type="text" id="lastname" name="lastname" placeholder="Last Name"
-                                                    value="<%= profileData.lastName %>" required <% if
-                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
+                                <% if(userData.role == "HR Head" || userData.role == "Admin") { %>
 
-                                        <div class="col-xl-4 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <input type="text" id="firstname" name="firstname" placeholder="First Name"
-                                                    value="<%= profileData.firstName %>" required <% if
-                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-4 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <input type="text" id="middlename" name="middlename"
-                                                    placeholder="Middle Name" value="<%= profileData.middleName %>" required
-                                                    <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="age" name="age" placeholder="Age"
-                                                    value="<%= profileData.age %>" required <% if
-                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="sex" name="sex" placeholder="Sex"
-                                                    value="<%= profileData.sex %>" required <% if
-                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="dateofbirth" name="dateofbirth"
-                                                    placeholder="Birthdate" value="<%= profileData.birthdate %>" required <%
-                                                    if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-12 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="address" name="address"
-                                                    value="<%= profileData.address %>" placeholder="Address" required <% if
-                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-6 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="contactNumber" name="contactNumber"
-                                                    value="<%= profileData.contactNo %>" placeholder="Contact No." required
-                                                    <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="Position" name="Position"
-                                                    value="<%= profileData.position %>" placeholder="Position" required <%
-                                                    if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="SSS" name="SSS" placeholder="SSS No."
-                                                    value="<%= profileData.sssNo %>" required <% if
-                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="PhilHealth" name="PhilHealth"
-                                                    value="<%= profileData.philHealthNo %>" placeholder="Phil Health No."
-                                                    required <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <input type="text" id="Pagibig" name="Pagibig"
-                                                    value="<%= profileData.pagibigNo %>" placeholder="Pag-ibig No." required
-                                                    <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xl-4 col-sm-12 col-12 ">
-                                            <div class="form-group">
-                                                <select name="status" id="status" <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
-                                                    <option value="Pending" <% if(profileData.status=="Pending" ) {%>
-                                                        selected <% } %> > Pending </option>
-                                                    <option value="Accepted" <% if(profileData.status=="Accepted" ) {%>
-                                                        selected <% } %> > Accepted </option>
-                                                    <option value="Blacklisted" <% if(profileData.status=="Blacklisted" )
-                                                        {%> selected <% } %> > Blacklisted </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-btn">
+                                    <button type="submit" class="btn btn-apply">Update Employee</button>
+                                    <a href="/applicants" class="btn btn-secondary ">Cancel</a>
                                 </div>
 
-                            </div>
+                                <% } %>
+                            </form>
+                        </div>
 
-                            <% if(userData.role == "HR Head" || userData.role == "Admin") { %>
+                    <% } else if (profileData.status == "Employee") { %>
 
-                            <div class="form-btn">
-                                <button type="submit" class="btn btn-apply">Update Employee</button>
-                                <a href="/applicants" class="btn btn-secondary ">Cancel</a>
-                            </div>
+                        <!-- Employee Table -->
 
-                            <% } %>
-                        </form>
-                    </div>
+                        <div class="col-xl-12 col-sm-12 col-6">
+                            <form method="POST" action="/employee-update/<%= profileData.id %>">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="lastname" name="lastname" placeholder="Last Name"
+                                                        value="<%= profileData.lastName %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="firstname" name="firstname" placeholder="First Name"
+                                                        value="<%= profileData.firstName %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="middlename" name="middlename"
+                                                        placeholder="Middle Name" value="<%= profileData.middleName %>" required
+                                                        <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="age" name="age" placeholder="Age"
+                                                        value="<%= profileData.age %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="sex" name="sex" placeholder="Sex"
+                                                        value="<%= profileData.sex %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="dateofbirth" name="dateofbirth"
+                                                        placeholder="Birthdate" value="<%= profileData.birthdate %>" required <%
+                                                        if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="address" name="address"
+                                                        value="<%= profileData.address %>" placeholder="Address" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="contactNumber" name="contactNumber"
+                                                        value="<%= profileData.contactNo %>" placeholder="Contact No." required
+                                                        <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Position" name="Position"
+                                                        value="<%= profileData.position %>" placeholder="Position" required <%
+                                                        if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="SSS" name="SSS" placeholder="SSS No."
+                                                        value="<%= profileData.sssNo %>" required <% if
+                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="PhilHealth" name="PhilHealth"
+                                                        value="<%= profileData.philHealthNo %>" placeholder="Phil Health No."
+                                                        required <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Pagibig" name="Pagibig"
+                                                        value="<%= profileData.pagibigNo %>" placeholder="Pag-ibig No." required
+                                                        <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <% if(userData.role == "HR Head" || userData.role == "Admin") { %>
+
+                                <div class="form-btn">
+                                    <button type="submit" class="btn btn-apply">Update Employee</button>
+                                    <a href="/records" class="btn btn-secondary ">Cancel</a>
+                                </div>
+
+                                <% } %>
+                            </form>
+                        </div>
+
+                    <% } else if (profileData.status == "Blacklisted") {%>
+
+                        <!-- Blacklisted Table -->
+
+                        <div class="col-xl-12 col-sm-12 col-6">
+                            <form method="POST" action="/employee-update/<%= profileData.id %>">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="lastname" name="lastname" placeholder="Last Name"
+                                                        value="<%= profileData.lastName %>" required disabled >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="firstname" name="firstname" placeholder="First Name"
+                                                        value="<%= profileData.firstName %>" required disabled >
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="middlename" name="middlename"
+                                                        placeholder="Middle Name" value="<%= profileData.middleName %>" required disabled >
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="age" name="age" placeholder="Age"
+                                                        value="<%= profileData.age %>" required disabled >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="sex" name="sex" placeholder="Sex"
+                                                        value="<%= profileData.sex %>" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="dateofbirth" name="dateofbirth"
+                                                        placeholder="Birthdate" value="<%= profileData.birthdate %>" required disabled >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="address" name="address"
+                                                        value="<%= profileData.address %>" placeholder="Address" required disabled >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="contactNumber" name="contactNumber"
+                                                        value="<%= profileData.contactNo %>" placeholder="Contact No." required disabled >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Position" name="Position"
+                                                        value="<%= profileData.position %>" placeholder="Position" required disabled >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="SSS" name="SSS" placeholder="SSS No."
+                                                        value="<%= profileData.sssNo %>" required disabled >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="PhilHealth" name="PhilHealth"
+                                                        value="<%= profileData.philHealthNo %>" placeholder="Phil Health No." required disabled >
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Pagibig" name="Pagibig"
+                                                        value="<%= profileData.pagibigNo %>" placeholder="Pag-ibig No." required disabled >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="reason" name="reason" value="<%= profileData.reason %>" placeholder="Reason for Blacklisting" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    <% } %>
+                    
                 </div>
             </div>
+
+            <script>
+            
+                function reasonBlacklisted() {
+                    var currentStatus = document.getElementById("status");
+                    if (currentStatus.value == "Blacklisted"){
+                        document.getElementById("reason").style.visibility="visible";
+                    }else{
+                        document.getElementById("reason").style.visibility="hidden";
+                    }
+                }
+    
+            </script>
+
             <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
             <script src="/assets/js/jquery-3.6.0.min.js"></script>
 

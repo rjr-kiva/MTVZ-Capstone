@@ -19,7 +19,12 @@ const redirectHome = (req, res, next) => {
     }
 }
 
-router.get('/profile/:id', redirectLogin, controllerProfile.getProfile);
-router.post('/update/:id', controllerProfile.postUpdate);
+router.get('/applicant-profile/:id', redirectLogin, controllerProfile.getApplicantProfile);
+router.post('/applicant-update/:id', controllerProfile.postUpdate);
+
+router.get('/employee-profile/:id', redirectLogin, controllerProfile.getEmployeeProfile)
+router.post('/employee-update/:id', controllerProfile.postEmployeeUpdate);
+
+router.get('/blacklisted-profile/:id', redirectLogin, controllerProfile.getBlacklistedProfile)
 
 module.exports = router;
