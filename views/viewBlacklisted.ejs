@@ -177,164 +177,40 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xl-12 col-sm-12 col-12">
+                        <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="card">
                                 <div class="table-responsive">
-                                    <table class="table  custom-table  no-footer">
+                                    <table class="table custom-table no-footer">
                                         <thead>
                                             <tr>
-                                                <th>Employees</th>
-                                                <th>Status </th>
-                                                <th>Employment</th>
-                                                <th>Email</th>
-                                                <th>Job Title </th>
-                                                <th>Approved by </th>
-                                                <th>Table 7 </th>
-                                                <th>Table 8 </th>
+                                                <th>Name</th>
+                                                <th>Age </th>
+                                                <th>Address</th>
+                                                <th>Contact Number</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% blacklistedRecords.forEach((dataInfo) =>  {%>
                                             <tr>
                                                 <td>
                                                     <div class="table-img">
                                                         <a href="profile.html"><img
-                                                                src="assets/img/profiles/avatar-10.jpg" alt="profile"
+                                                                src="/assets/img/profiles/avatar-10.jpg" alt="profile"
                                                                 class="img-table"></a>
-                                                        <label>Danny Ward</label>
+                                                        <label> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
                                                     </div>
                                                 </td>
                                                 <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Blacklisted</option>
-                                                        <option value="inactive">Rehire</option>
-
-                                                    </select>
+                                                    <label><%= dataInfo.age %> </label>
                                                 </td>
                                                 <td>
-                                                    <label>Permanent</label>
+                                                    <label><%= dataInfo.address %></label>
                                                 </td>
-                                                <td><label><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="1276737c6b6573607652776a737f627e773c717d7f">[email&#160;protected]</a>
-                                                    </label></td>
-                                                <td><label>Team Lead</label></td>
-                                                <td><label>Richard Wilson </label></td>
-                                                <td><label>Designing</label></td>
                                                 <td>
-                                                    <label>Designing</label>
+                                                    <label><%= dataInfo.contactNo %></label>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html"><img
-                                                                src="assets/img/profiles/avatar-17.jpg" alt="profile"
-                                                                class="img-table"></a>
-                                                        <label>Linda Craver</label>
-                                                    </div>
-                                                </td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Blacklisted</option>
-                                                        <option value="inactive">Rehire</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label>Permanent</label>
-                                                </td>
-                                                <td><label><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="167a7f78727775647760736456736e777b667a733875797b">[email&#160;protected]</a></label>
-                                                </td>
-                                                <td><label>Team Lead</label></td>
-                                                <td><label>Richard Wilson </label></td>
-                                                <td><label>Designing</label></td>
-                                                <td>
-                                                    <label>Designing</label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html"><img
-                                                                src="assets/img/profiles/avatar-19.jpg" alt="profile"
-                                                                class="img-table"></a>
-                                                        <label>Jenni Sims</label>
-                                                    </div>
-                                                </td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Blacklisted</option>
-                                                        <option value="inactive">Rehire</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label>Permanent</label>
-                                                </td>
-                                                <td><label><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="18727d7676716b71756b587d60797568747d367b7775">[email&#160;protected]</a></label>
-                                                </td>
-                                                <td><label>Team Lead</label></td>
-                                                <td><label>Richard Wilson </label></td>
-                                                <td><label>Designing</label></td>
-                                                <td>
-                                                    <label>Designing</label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html"><img
-                                                                src="assets/img/profiles/avatar-14.jpg" alt="profile"
-                                                                class="img-table"></a>
-                                                        <label>Maria Cotton</label>
-                                                    </div>
-                                                </td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Blacklisted</option>
-                                                        <option value="inactive">Rehire</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label>Permanent</label>
-                                                </td>
-                                                <td><label><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="bad7dbc8d3dbd9d5ceced5d4fadfc2dbd7cad6df94d9d5d7">[email&#160;protected]</a></label>
-                                                </td>
-                                                <td><label>Team Lead</label></td>
-                                                <td><label>Richard Wilson </label></td>
-                                                <td><label>Designing</label></td>
-                                                <td>
-                                                    <label>Designing</label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="profile.html"><img
-                                                                src="assets/img/profiles/avatar-18.jpg" alt="profile"
-                                                                class="img-table"></a>
-                                                        <label>John Gibbs</label>
-                                                    </div>
-                                                </td>
-                                                <td class="tab-select">
-                                                    <select class="select">
-                                                        <option value="active">Blacklisted</option>
-                                                        <option value="inactive">Rehire</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <label>Permanent</label>
-                                                </td>
-                                                <td><label><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="3c56535452584e454f585d50597c59445d514c5059125f5351">[email&#160;protected]</a></label>
-                                                </td>
-                                                <td><label>Team Lead</label></td>
-                                                <td><label>Richard Wilson </label></td>
-                                                <td><label>Designing</label></td>
-                                                <td>
-                                                    <label>Designing</label>
-                                                </td>
-                                            </tr>
+                                            <% }) %>
                                         </tbody>
                                     </table>
                                 </div>
