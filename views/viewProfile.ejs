@@ -644,9 +644,9 @@
                                                 <div class="form-group">
                                                     <select id="role" name="role" required disabled>
                                                         <option disabled>Role</option>
-                                                        <option value="HR Assistant" <% if(profileData.status == "Male") { %> selected <% } %> >HR Assistant</option>
-                                                        <option value="HR Head" <% if(profileData.status == "HR Head") { %> selected <% } %> >HR Head</option>
-                                                        <option value="Admin"<% if(profileData.status == "Admin") { %> selected <% } %> >Admin</option>
+                                                        <option value="HR Assistant" <% if(profileData.role == "HR Assistant") { %> selected <% } %> >HR Assistant</option>
+                                                        <option value="HR Head" <% if(profileData.role == "HR Head") { %> selected <% } %> >HR Head</option>
+                                                        <option value="Admin"<% if(profileData.role == "Admin") { %> selected <% } %> >Admin</option>
                                                     </select>
                                                 </div>
                                             </div>
