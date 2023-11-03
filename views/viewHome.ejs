@@ -76,8 +76,6 @@
                             class="fa fa-ellipsis-v"></i></a>
 
                     <div class="dropdown-menu dropdown-menu-right ">
-                        <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="settings.html">Settings</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </div>
@@ -121,6 +119,10 @@
                                     <li>
                                         <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
                                     </li>
+                                    <li>
+                                        <a href="/ectag-employee"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
+                                                ECTAG Employee</span></a>
+                                    </li>
                                 <% } %>
                                 <li>
                                     <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
@@ -145,7 +147,12 @@
             <div class="page-wrapper">
                 <div class="content container-fluid">
                     <div class="page-name 	mb-4">
-                        <h4 class="m-0"><img src="assets/img/profiles/hrMale.png" class="mr-1" alt="profile" />
+                        <h4 class="m-0">
+                            <% if (userData.gender=="Male" ) { %>
+                                <img src="assets/img/profiles/hrMale.png" alt="">
+                            <% } else if (userData.gender=="Female" ) { %>
+                                <img src="assets/img/profiles/hrFemale.png" alt="">
+                            <% } %>
                             <%= userData.name %>
                         </h4>
                         <label>

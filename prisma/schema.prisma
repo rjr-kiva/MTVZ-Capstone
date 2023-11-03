@@ -17,8 +17,12 @@ model User_Data {
   email           String? @unique
   password        String?
   name            String?
+  age             String?
+  address         String?
+  contactNo       String?
   gender          String?
   role            String?
+  status          String?
 }
 
 model Applicant_Data {

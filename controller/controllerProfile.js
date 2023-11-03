@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 var prisma = new PrismaClient();
 
+const bcrypt = require("bcrypt")
+
 exports.getApplicantProfile = async (req, res) => {
 
     const profileData = await prisma.applicant_Data.findUnique({ where: { id: req.params.id } });
@@ -62,7 +64,32 @@ exports.postUpdate = async (req, res) => {
             const deleteEmployee = await prisma.applicant_Data.delete({
                 where: { id: req.params.id },
             });
-        }
+        } else
+            if (status == "Pending") {
+                console.log("Pending")
+
+                const pendingEmployee = await prisma.applicant_Data.update({
+                    where:{
+                        id: req.params.id
+                    },
+                    data: {
+                        lastName: lastname,
+                        firstName: firstname,
+                        middleName: middlename,
+                        age: age,
+                        sex: sex,
+                        address: address,
+                        contactNo: contactNumber,
+                        birthdate: dateofbirth,
+                        sssNo: SSS,
+                        philHealthNo: PhilHealth,
+                        pagibigNo: Pagibig,
+                        position: Position,
+                        status: "Pending",
+                    }
+                });
+
+            }
 
     res.redirect('/applicants')
 
@@ -101,6 +128,57 @@ exports.postEmployeeUpdate = async (req, res) => {
     })
 
     res.redirect('/records')
+
+}
+
+exports.getECTAGEmployeeProfile = async (req, res) => {
+
+    const profileData = await prisma.user_Data.findUnique({ where: { id: req.params.id } });
+    res.render('viewProfile', { userData: req.session.userData, profileData: profileData });
+
+}
+
+exports.postECTAGEmployeeUpdate = async (req, res) => {
+    const {email, password, name, age, contactNumber, address, gender, role} = req.body;
+
+    const hashword = await bcrypt.hash(password, 10)
+
+    if(password == ""){
+        const updateECTAGEmployee = await prisma.user_Data.update({
+            where: {
+                id: req.params.id
+            },
+            data: {
+                email: email,
+                name: name,
+                age: age,
+                contactNo:  contactNumber,
+                address: address,
+                gender: gender,
+                role: role
+            }
+        })
+    }else{
+        const updateECTAGEmployee = await prisma.user_Data.update({
+            where: {
+                id: req.params.id
+            },
+            data: {
+                email: email,
+                password: hashword,
+                name: name,
+                age: age,
+                contactNo:  contactNumber,
+                address: address,
+                gender: gender,
+                role: role
+            }
+        })
+    }
+
+    
+
+    res.redirect('/ectag-employee')
 
 }
 

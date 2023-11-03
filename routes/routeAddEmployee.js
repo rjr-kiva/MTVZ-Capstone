@@ -34,6 +34,9 @@ const storage = multer.diskStorage({
 router.get('/add-employee', redirectLogin, controllerAddEmployee.getAddEmployee);
 router.post('/add-employee', controllerAddEmployee.postAddEmployee);
 
+router.get('/add-ectagemployee', redirectLogin, controllerAddEmployee.getAddECTAGEmployee);
+router.post('/add-ectagemployee', controllerAddEmployee.postAddECTAGEmployee);
+
 const upload = multer({ storage: storage });
 
 router.post('/upload', upload.single('file'), controllerAddEmployee.postUpload);

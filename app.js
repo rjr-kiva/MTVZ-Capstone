@@ -46,6 +46,7 @@ const recordsRouter = require('./routes/routeRecords');
 const profileRouter = require('./routes/routeProfile');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
 const blacklistedRouter = require('./routes/routeBlacklisted');
+const ectagEmployeeRouter = require('./routes/routeECTAGEmployee');
 
 // sid.signature
 
@@ -63,6 +64,7 @@ app.use('/', recordsRouter);
 app.use('/', profileRouter);
 app.use('/', addEmployeeRouter);
 app.use('/', blacklistedRouter);
+app.use('/', ectagEmployeeRouter);
 app.get('/', (req,res) => {
     const { userId } = req.session;
     res.redirect('/login')

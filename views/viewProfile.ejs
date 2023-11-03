@@ -131,6 +131,10 @@
                                 <li>
                                     <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
                                 </li>
+                                <li <% if(profileData.status == "ECTAG") { %> class="active" <% } %> >
+                                    <a href="/ectag-employee"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
+                                            ECTAG Employee</span></a>
+                                </li>
                             <% } %>
                             <li>
                                 <a href="/calendar"><img src="/assets/img/calendar.svg" alt="sidebar_img">
@@ -168,6 +172,8 @@
                                         Applicants
                                     <% } else if (profileData.status == "Employee" || profileData.status == "Blacklisted") { %>
                                         Records
+                                    <% } else if (profileData.status == "ECTAG") { %>
+                                        ECTAG Employees
                                     <% } %>
                                 </li>
                             </ul>
@@ -233,9 +239,11 @@
                                             </div>
                                             <div class="col-xl-4 col-sm-12 col-12 ">
                                                 <div class="form-group">
-                                                    <input type="text" id="sex" name="sex" placeholder="Sex"
-                                                        value="<%= profileData.sex %>" required <% if
-                                                        (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                    <select id="sex" name="sex" required <% if
+                                                    (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                        <option value="Male" <% if(profileData.sex == "Male") { %> selected <% } %> >Male</option>
+                                                        <option value="Female" <% if(profileData.sex == "Female") { %> selected <% } %> >Female</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-sm-12 col-12 ">
@@ -567,6 +575,95 @@
                             </form>
                         </div>
 
+                    <% } else if (profileData.status == "ECTAG") {%>
+                        
+                        <!-- ECTAG Employee Table -->
+
+                        <div class="col-xl-12 col-sm-12 col-12 ">
+                            <form method="POST" action="/ectag-employee-update/<%= profileData.id %>">
+                                <div class="card ">
+                                    <div class="card-header">
+                                        <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                        </h2>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="email" name="email" value="<%= profileData.email %>"
+                                                        placeholder="Email" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="password" name="password"
+                                                        placeholder="Password" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="name" name="name" placeholder="Name" value="<%= profileData.name %>"
+                                                        required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="age" name="age" placeholder="Age" value="<%= profileData.age %>"
+                                                        required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="contactNumber" name="contactNumber" value="<%= profileData.contactNo %>"
+                                                        placeholder="Contact No." required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="address" name="address" value="<%= profileData.address %>"
+                                                        placeholder="Address" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <select id="gender" name="gender" required disabled>
+                                                        <option disabled>Gender</option>
+                                                        <option value="Male" <% if(profileData.gender == "Male") { %> selected <% } %> >Male</option>
+                                                        <option value="Female" <% if(profileData.gender == "Female") { %> selected <% } %> >Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <select id="role" name="role" required disabled>
+                                                        <option disabled>Role</option>
+                                                        <option value="HR Assistant" <% if(profileData.status == "Male") { %> selected <% } %> >HR Assistant</option>
+                                                        <option value="HR Head" <% if(profileData.status == "HR Head") { %> selected <% } %> >HR Head</option>
+                                                        <option value="Admin"<% if(profileData.status == "Admin") { %> selected <% } %> >Admin</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-btn" id="editDiv">
+                                    <button id="hrBtn" class="btn btn-apply" onclick="toUpdate()">Edit HR Employee</button>
+                                    <a href="/ectag-employee" class="btn btn-secondary ">Cancel</a>
+                                </div>
+                                <div class="form-btn" id="updateDiv" hidden>
+                                    <button type="submit" class="btn btn-apply">Update HR Employee</button>
+                                    <a href="/ectag-employee" class="btn btn-secondary ">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
                     <% } %>
                     
                 </div>
@@ -581,6 +678,19 @@
                     }else{
                         document.getElementById("reason").style.visibility="hidden";
                     }
+                }
+
+                function toUpdate() {
+                    document.getElementById("email").removeAttribute("disabled")
+                    document.getElementById("password").removeAttribute("disabled")
+                    document.getElementById("name").removeAttribute("disabled")
+                    document.getElementById("age").removeAttribute("disabled")
+                    document.getElementById("contactNumber").removeAttribute("disabled")
+                    document.getElementById("address").removeAttribute("disabled")
+                    document.getElementById("gender").removeAttribute("disabled")
+                    document.getElementById("role").removeAttribute("disabled")
+                    document.getElementById("updateDiv").removeAttribute("hidden")
+                    document.getElementById("editDiv").remove();
                 }
     
             </script>

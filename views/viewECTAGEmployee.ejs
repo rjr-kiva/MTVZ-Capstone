@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Blacklist Page</title>
+        <title>Employee Page</title>
 
         <link rel="shortcut icon" href="assets/img/ECTAG.png">
 
@@ -17,9 +17,9 @@
 
         <link rel="stylesheet" href="assets/css/style.css">
         <!--[if lt IE 9]>
-			<script src="assets/js/html5shiv.min.js"></script>
-			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
+                    <script src="assets/js/html5shiv.min.js"></script>
+                    <script src="assets/js/respond.min.js"></script>
+                <![endif]-->
     </head>
 
     <body>
@@ -44,9 +44,6 @@
                     </a>
                 </div>
 
-
-
-
                 <div class="top-nav-search">
                     <form>
                         <input type="text" class="form-control" placeholder="">
@@ -54,14 +51,11 @@
                     </form>
                 </div>
 
-
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fas fa-bars"></i>
                 </a>
 
-
                 <ul class="nav user-menu">
-
 
                     <li class="nav-item dropdown has-arrow main-drop">
                         <p class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -92,7 +86,6 @@
 
             </div>
 
-
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-inner slimscroll">
                     <div class="sidebar-contents">
@@ -120,30 +113,28 @@
                             </div>
                             <ul>
                                 <li>
-                                    <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img">
+                                    <a href="/home"><img src="/assets/img/home.svg" alt="sidebar_img">
                                         <span>Dashboard</span></a>
                                 </li>
                                 <li>
-                                    <a href="/applicants"><img src="assets/img/employee.svg" alt="sidebar_img"><span>
-                                        Applicants</span></a>
+                                    <a href="/applicants"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
+                                            Applicants</span></a>
                                 </li>
                                 <% if(userData.role == "Admin") {%>
                                     <li>
                                         <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="/ectag-employee"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
                                                 ECTAG Employee</span></a>
                                     </li>
                                 <% } %>
                                 <li>
-                                    <a href="/calendar"><img src="assets/img/calendar.svg" alt="sidebar_img">
+                                    <a href="/calendar"><img src="/assets/img/calendar.svg" alt="sidebar_img">
                                         <span>Calendar</span></a>
                                 </li>
-
-
-                                <li class="active">
-                                    <a href="/records"><img src="assets/img/report.svg"
+                                <li>
+                                    <a href="/records"><img src="/assets/img/report.svg"
                                             alt="sidebar_img"><span>Records</span></a>
                                 </li>
                             </ul>
@@ -162,61 +153,57 @@
             <div class="page-wrapper">
                 <div class="content container-fluid">
                     <div class="row">
-                        <div class="col-xl-12 col-sm-12 col-12 ">
+                        <div class="col-xl-12 col-sm-12 col-12">
                             <div class="breadcrumb-path mb-4">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
-                                                class="mr-2" alt="breadcrumb">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active"> Records</li>
+                                                class="mr-2" alt="breadcrumb" />Home</a></li>
+                                    <li class="breadcrumb-item active"> ECTAG Employees</li>
                                 </ul>
-                                <h3>Blacklist</h3>
+                                <h3>ECTAG Employees</h3>
                             </div>
                         </div>
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
-                            <div class="head-link-set">
-                                <ul>
-                                    <li><a href="/records">Employee Records</a></li>
-                                    <li><a class="active" href="/blacklist">Blacklist Employees</a></li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-xl-10 col-sm-8 col-12 ">
+                                    <label class="employee_count"><%= employeeECTAGInfo.length %> ECTAG Employees</label>
+                                </div>
+                                <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
+                                    <a class="btn-add" href="/add-ectagemployee"><i data-feather="plus"></i> Add Person</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="card">
                                 <div class="table-responsive">
-                                    <table class="table custom-table no-footer">
-                                        <thead>
+                                    <table class="table  custom-table no-footer">
+                                        <thead class="table-heading">
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Age </th>
                                                 <th>Address</th>
                                                 <th>Contact Number</th>
-                                                <th>Reason for Blacklisting</th>
+                                                <th>Role</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% blacklistedRecords.forEach((dataInfo) =>  {%>
+                                            <% employeeECTAGInfo.forEach((dataInfo) =>  {%>
                                             <tr>
                                                 <td>
                                                     <div class="table-img">
-                                                        <a href="/blacklisted-profile/<%= dataInfo.id %>"><img
-                                                                src="/assets/img/profiles/avatar-10.jpg" alt="profile"
-                                                                class="img-table"></a>
-                                                        <label> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
+                                                        <a href="/ectag-employee-profile/<%= dataInfo.id %>">
+                                                            <% if (dataInfo.gender=="Male" ) { %>
+                                                                <img src="assets/img/profiles/hrMale.png" alt="" class="img-table">
+                                                                <% } else if (dataInfo.gender=="Female" ) { %>
+                                                                    <img src="assets/img/profiles/hrFemale.png" alt="" class="img-table">
+                                                                    <% } %>
+                                                        </a>
+                                                        <label> <%= dataInfo.name%></label>
                                                     </div>
                                                 </td>
-                                                <td class="tab-select">
-                                                    <label><%= dataInfo.age %> </label>
-                                                </td>
-                                                <td>
-                                                    <label><%= dataInfo.address %></label>
-                                                </td>
-                                                <td>
-                                                    <label><%= dataInfo.contactNo %></label>
-                                                </td>
-                                                <td>
-                                                    <label><%= dataInfo.reason %></label>
-                                                </td>
+                                                <td><label><%= dataInfo.address %> </label></td>
+                                                <td><label><%= dataInfo.contactNo %> </label></td>
+                                                <td><label> <%= dataInfo.role %> </label></td>
+                                        
                                             </tr>
                                             <% }) %>
                                         </tbody>
@@ -231,7 +218,6 @@
         </div>
 
 
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
         <script src="assets/js/jquery-3.6.0.min.js"></script>
 
         <script src="assets/js/popper.min.js"></script>

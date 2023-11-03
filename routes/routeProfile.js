@@ -25,6 +25,9 @@ router.post('/applicant-update/:id', controllerProfile.postUpdate);
 router.get('/employee-profile/:id', redirectLogin, controllerProfile.getEmployeeProfile)
 router.post('/employee-update/:id', controllerProfile.postEmployeeUpdate);
 
+router.get('/ectag-employee-profile/:id', redirectLogin, controllerProfile.getECTAGEmployeeProfile)
+router.post('/ectag-employee-update/:id', controllerProfile.postECTAGEmployeeUpdate);
+
 router.get('/blacklisted-profile/:id', redirectLogin, controllerProfile.getBlacklistedProfile)
 
 module.exports = router;

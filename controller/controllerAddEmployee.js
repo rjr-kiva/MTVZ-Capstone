@@ -11,8 +11,10 @@ const model_id3 = '335032a2-84c3-4bc1-8702-b18e4761a122'; // Add the third model
 const { PrismaClient } = require('@prisma/client');
 var prisma = new PrismaClient();
 
+const bcrypt = require('bcrypt')
+
 exports.getAddEmployee = (req, res) => {
-    res.render('viewAddEmployee', {userData: req.session.userData});
+    res.render('viewAddEmployee', {userData: req.session.userData, purpose: "Applicant"});
 }
 
 exports.postAddEmployee = async (req, res) => {
@@ -53,6 +55,35 @@ exports.postAddEmployee = async (req, res) => {
     console.log("Record added successfully.")
 
     res.redirect('/applicants')
+}
+
+exports.getAddECTAGEmployee = (req, res) => {
+    res.render('viewAddEmployee', {userData: req.session.userData, purpose: "ECTAG"});
+}
+
+exports.postAddECTAGEmployee = async (req, res) => {
+
+    const {email, password, name, age, contactNumber, address, gender, role} = req.body;
+
+    const hashword = await bcrypt.hash(password, 10)
+
+    const addECTAGEmployee = await prisma.user_Data.create({
+        data: {
+            email: email,
+            password: hashword,
+            name: name,
+            age: age,
+            contactNo:  contactNumber,
+            address: address,
+            gender: gender,
+            role: role,
+            status: "ECTAG"
+        }
+    })
+
+    console.log("ECTAG Employee added successfully.")
+
+    res.redirect('/ectag-employee')
 }
 
 exports.postUpload = (req, res) => {

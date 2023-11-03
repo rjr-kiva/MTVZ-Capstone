@@ -89,13 +89,17 @@
                                     <a href="/home"><img src="assets/img/home.svg" alt="sidebar_img">
                                         <span>Dashboard</span></a>
                                 </li>
-                                <li class="active">
+                                <li <% if(purpose == "Applicant") { %> class="active" <% } %> >
                                     <a href="/applicants"><img src="assets/img/employee.svg" alt="sidebar_img"><span>
                                         Applicants</span></a>
                                 </li>
                                 <% if(userData.role == "Admin") {%>
                                     <li>
                                         <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
+                                    </li>
+                                    <li <% if(purpose == "ECTAG") { %> class="active" <% } %> >
+                                        <a href="/ectag-employee"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
+                                                ECTAG Employee</span></a>
                                     </li>
                                 <% } %>
                                 <li>
@@ -129,151 +133,257 @@
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
                                                 class="mr-2" alt="breadcrumb" />Home</a></li>
-                                    <li class="breadcrumb-item active"> Employees</li>
+                                    <li class="breadcrumb-item active"> 
+                                        <% if(purpose == "Applicant") { %> 
+                                            Applicant
+                                        <% } %>
+                                        <% if(purpose == "ECTAG") { %> 
+                                            ECTAG Employee
+                                        <% } %>
+                                    </li>
                                 </ul>
                                 <h3>Create Employees</h3>
                             </div>
                         </div>
 
-                        <div class="col-xl-12 col-sm-12 col-12">
-                            <div class="breadcrumb-path mb-4">
-                                <h3>Upload via OCR</h3>
-                                <input type="file" id="fileInput">
-                                <button onclick="uploadFile()">Upload File</button>
+                        <!-- Applicant Table -->
 
-                                <!-- Loading indicator -->
-                                <div id="loadingIndicator" style="display: none;">
-                                    <br>
-                                    <p>Uploading...</p>
-                                    <progress id="uploadProgress" max="100" value="0"></progress>
+                        <% if(purpose == "Applicant") {%>
+                            <div class="col-xl-12 col-sm-12 col-12">
+                                <div class="breadcrumb-path mb-4">
+                                    <h3>Upload via OCR</h3>
+                                    <input type="file" id="fileInput">
+                                    <button onclick="uploadFile()">Upload File</button>
+
+                                    Loading indicator 
+                                    <div id="loadingIndicator" style="display: none;">
+                                        <br>
+                                        <p>Uploading...</p>
+                                        <progress id="uploadProgress" max="100" value="0"></progress>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-xl-12 col-sm-12 col-6">
-                            <div class="row">
+                            <div class="col-xl-12 col-sm-12 col-6">
+                                <div class="row">
 
-                                <div class="col-xl-6 col-sm-12 col-12 ">
-                                    <form method="POST" action="/add-employee">
-                                        <div class="card ">
-                                            <div class="card-header">
-                                                <h2 class="card-titles">Employment Details<span>Insert text here.</span>
-                                                </h2>
+                                    <div class="col-xl-6 col-sm-12 col-12 ">
+                                        <form method="POST" action="/add-employee">
+                                            <div class="card ">
+                                                <div class="card-header">
+                                                    <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-xl-4 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <input type="text" id="lastname" name="lastname"
+                                                                    placeholder="Last Name" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-4 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <input type="text" id="firstname" name="firstname"
+                                                                    placeholder="First Name" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-4 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <input type="text" id="middlename" name="middlename"
+                                                                    placeholder="Middle Name" required>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="age" name="age" placeholder="Age"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <select id="sex" name="sex" required>
+                                                                    <option selected disabled>Sex</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="dateofbirth" name="dateofbirth"
+                                                                    placeholder="Birthdate" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-12 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="address" name="address"
+                                                                    placeholder="Address" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="contactNumber" name="contactNumber"
+                                                                    placeholder="Contact No." required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="Position" name="Position"
+                                                                    placeholder="Position" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="SSS" name="SSS" placeholder="SSS No."
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="PhilHealth" name="PhilHealth"
+                                                                    placeholder="Phil Health No." required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="Pagibig" name="Pagibig"
+                                                                    placeholder="Pag-ibig No." required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
-
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-xl-4 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <input type="text" id="lastname" name="lastname"
-                                                                placeholder="Last Name" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xl-4 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <input type="text" id="firstname" name="firstname"
-                                                                placeholder="First Name" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xl-4 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <input type="text" id="middlename" name="middlename"
-                                                                placeholder="Middle Name" required>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-xl-4 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="age" name="age" placeholder="Age"
-                                                                required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="sex" name="sex" placeholder="Sex"
-                                                                required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="dateofbirth" name="dateofbirth"
-                                                                placeholder="Birthdate" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xl-12 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="address" name="address"
-                                                                placeholder="Address" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xl-6 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="contactNumber" name="contactNumber"
-                                                                placeholder="Contact No." required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Position" name="Position"
-                                                                placeholder="Position" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xl-4 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="SSS" name="SSS" placeholder="SSS No."
-                                                                required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="PhilHealth" name="PhilHealth"
-                                                                placeholder="Phil Health No." required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-4 col-sm-12 col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Pagibig" name="Pagibig"
-                                                                placeholder="Pag-ibig No." required>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="form-btn">
+                                                <button type="submit" class="btn btn-apply">Add Employee</button>
+                                                <a href="/applicants" class="btn btn-secondary ">Cancel</a>
                                             </div>
+                                        </form>
+                                    </div>
 
-                                        </div>
-                                        <div class="form-btn">
-                                            <button type="submit" class="btn btn-apply">Add Employee</button>
-                                            <a href="/applicants" class="btn btn-secondary ">Cancel</a>
-                                        </div>
-                                    </form>
-                                </div>
+                                    <div class="col-xl-6 col-sm-12 col-12 ">
+                                        <div class="right-wrapper">
+                                            <!-- Display the uploaded file as a link -->
+                                            <div id="uploadedFile"></div>
 
-                                <div class="col-xl-6 col-sm-12 col-12 ">
-                                    <div class="right-wrapper">
-                                        <!-- Display the uploaded file as a link -->
-                                        <div id="uploadedFile"></div>
-
-                                        <!-- Display the uploaded image -->
-                                        <div id="uploadedImage">
-                                            <img id="imagePreview" src="assets/img/ECTAG.png" alt="Uploaded Image"
-                                                width="600px" height="w-auto">
+                                            <!-- Display the uploaded image -->
+                                            <div id="uploadedImage">
+                                                <img id="imagePreview" src="assets/img/ECTAG.png" alt="Uploaded Image"
+                                                    width="600px" height="w-auto">
+                                            </div>
                                         </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
-                        </div>
+                        <% } %>
+
+                        <!-- ECTAG Employee Table -->
+
+                        <% if(purpose == "ECTAG") {%>
+                            <div class="col-xl-12 col-sm-12 col-6">
+                                <div class="row">
+
+                                    <div class="col-xl-12 col-sm-12 col-12 ">
+                                        <form method="POST" action="/add-ectagemployee">
+                                            <div class="card ">
+                                                <div class="card-header">
+                                                    <h2 class="card-titles">Employment Details<span>Insert text here.</span>
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="email" name="email"
+                                                                    placeholder="Email" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="password" name="password"
+                                                                    placeholder="Password" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="name" name="name" placeholder="Name"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="age" name="age" placeholder="Age"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="contactNumber" name="contactNumber"
+                                                                    placeholder="Contact No." required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-12 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="address" name="address"
+                                                                    placeholder="Address" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <select id="gender" name="gender" required>
+                                                                    <option selected disabled>Gender</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-sm-12 col-12 ">
+                                                            <div class="form-group">
+                                                                <select id="role" name="role" required>
+                                                                    <option selected disabled>Role</option>
+                                                                    <option value="HR Assistant">HR Assistant</option>
+                                                                    <option value="HR Head">HR Head</option>
+                                                                    <option value="Admin">Admin</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-btn">
+                                                <button type="submit" class="btn btn-apply">Add HR Employee</button>
+                                                <a href="/ectag-employee" class="btn btn-secondary ">Cancel</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+
                     </div>
                 </div>
             </div>
