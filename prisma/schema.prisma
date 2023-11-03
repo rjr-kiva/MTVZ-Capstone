@@ -76,3 +76,11 @@ model Blacklisted_Data {
   status          String?
   reason          String?
 }
+
+model Company_Data {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  companyName     String?
+  companyAddress  String?
+  contactNo       String?
+  contactPerson   String?
+}
