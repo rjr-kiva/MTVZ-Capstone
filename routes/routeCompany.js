@@ -20,6 +20,7 @@ const redirectHome = (req, res, next) => {
 }
 
 router.get('/company', redirectLogin, controllerCompany.getCompany);
-router.post('/company', controllerCompany.postCompany);
+
+router.post('/addCompany', controllerCompany.postaddCompany);
 
 module.exports = router;

@@ -120,23 +120,25 @@
                                     <a href="/applicants"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
                                             Applicants</span></a>
                                 </li>
-                                <% if(userData.role == "Admin") {%>
+                                <% if(userData.role=="Admin" ) {%>
                                     <li>
-                                        <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
+                                        <a href="/company"><img src="/assets/img/company.svg"
+                                                alt="sidebar_img"><span>Company</span></a>
                                     </li>
                                     <li>
-                                        <a href="/ectag-employee"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
+                                        <a href="/ectag-employee"><img src="/assets/img/employee.svg"
+                                                alt="sidebar_img"><span>
                                                 ECTAG Employee</span></a>
                                     </li>
-                                <% } %>
-                                <li>
-                                    <a href="/calendar"><img src="/assets/img/calendar.svg" alt="sidebar_img">
-                                        <span>Calendar</span></a>
-                                </li>
-                                <li>
-                                    <a href="/records"><img src="/assets/img/report.svg"
-                                            alt="sidebar_img"><span>Records</span></a>
-                                </li>
+                                    <% } %>
+                                        <li>
+                                            <a href="/calendar"><img src="/assets/img/calendar.svg" alt="sidebar_img">
+                                                <span>Calendar</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/records"><img src="/assets/img/report.svg"
+                                                    alt="sidebar_img"><span>Records</span></a>
+                                        </li>
                             </ul>
                             <ul class="logout">
                                 <li>
@@ -156,7 +158,7 @@
                         <div class="col-xl-12 col-sm-12 col-12">
                             <div class="breadcrumb-path mb-4">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/home"><img src="assets/img/dash.png"
+                                    <li class="breadcrumb-item"><a href="/home"><img src="/assets/img/dash.png"
                                                 class="mr-2" alt="breadcrumb" />Home</a></li>
                                     <li class="breadcrumb-item active"> Applicants</li>
                                 </ul>
@@ -165,10 +167,12 @@
                         </div>
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
-                                <div class="col-xl-10 col-sm-8 col-12 ">
-                                    <label class="employee_count"><%= employeeInfo.length %> Contractual Applicants</label>
+                                <div class="col-xl-10 col-sm-6 col-12">
+                                    <label class="employee_count">
+                                        <%= employeeInfo.length %> Contractual Applicants
+                                    </label>
                                 </div>
-                                <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
+                                <div class="head-link-set col-xl-2 col-sm-6 col-12 ">
                                     <a class="btn-add" href="/add-employee"><i data-feather="plus"></i> Add Person</a>
                                 </div>
                             </div>
@@ -187,23 +191,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% employeeInfo.forEach((dataInfo) =>  {%>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-img">
-                                                        <a href="/applicant-profile/<%= dataInfo.id %>">
-                                                            <img src="assets/img/profiles/avatar-13.jpg" alt="profile"
-                                                                class="img-table" />
-                                                        </a>
-                                                        <label> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
-                                                    </div>
-                                                </td>
-                                                <td><label> <%= dataInfo.age %> </label></td>
-                                                <td><label><%= dataInfo.address %> </label></td>
-                                                <td><label><%= dataInfo.contactNo %> </label></td>
-                                                <td><label class="action_label"><%= dataInfo.status %> </label></td>
-                                            </tr>
-                                            <% }) %>
+                                            <% employeeInfo.forEach((dataInfo)=> {%>
+                                                <tr>
+                                                    <td>
+                                                        <div class="table-img">
+                                                            <a href="/applicant-profile/<%= dataInfo.id %>">
+                                                                <img src="assets/img/profiles/avatar-13.jpg"
+                                                                    alt="profile" class="img-table" />
+                                                            </a>
+                                                            <label>
+                                                                <%= dataInfo.lastName%>, <%= dataInfo.firstName%>
+                                                                        <%= dataInfo.middleName%>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td><label>
+                                                            <%= dataInfo.age %>
+                                                        </label></td>
+                                                    <td><label>
+                                                            <%= dataInfo.address %>
+                                                        </label></td>
+                                                    <td><label>
+                                                            <%= dataInfo.contactNo %>
+                                                        </label></td>
+                                                    <td><label class="action_label">
+                                                            <%= dataInfo.status %>
+                                                        </label></td>
+                                                </tr>
+                                                <% }) %>
                                         </tbody>
                                     </table>
                                 </div>
