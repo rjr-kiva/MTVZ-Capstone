@@ -177,7 +177,7 @@
                             <div class="row">
                                 <div class="col-xl-10 col-sm-6 col-12">
                                     <label class="employee_count">
-                                        <%= companyList.length %> Contractual Applicants
+                                        <%= companyList.length %> Companies Listed
                                     </label>
                                 </div>
                                 <div class="head-link-set col-xl-2 col-sm-6 col-12 ">
@@ -196,7 +196,7 @@
                                                 <h2 class="card-titles">
                                                     <%= dataInfo.companyName %>
                                                 </h2>
-                                                <!-- FOR ADMIN ONLY --> <a class="edit-link" data-toggle="modal" data-target="#editcompany"> <i
+                                                <!-- FOR ADMIN ONLY --> <a href="/edit-company/<%= dataInfo.id %>" class="edit-link"> <i
                                                         data-feather="edit"></i></a>
                                             </div>
                                             <div class="card-body">
