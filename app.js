@@ -3,6 +3,8 @@ const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
+//const TWO_HOURS = 1000 * 60 * 60 * 2
+
 const {
     NODE_ENV = 'development',
 
@@ -40,15 +42,17 @@ const loginRouter = require('./routes/routeLogin');
 const homeRouter = require('./routes/routeHome');
 const logoutRouter = require('./routes/routeLogout');
 const applicantsRouter = require('./routes/routeApplicants');
+const profileApplicantRouter = require('./routes/routeApplicantProfile');
 const companyRouter = require('./routes/routeCompany');
 const companyEditRouter = require('./routes/routeCompanyEdit');
 const calendarRouter = require('./routes/routeCalendar');
 const recordsRouter = require('./routes/routeRecords');
-const profileRouter = require('./routes/routeProfile');
+const recordProfileRouter = require('./routes/routeRecordProfile');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
 const blacklistedRouter = require('./routes/routeBlacklisted');
+const blacklistedProfileRouter = require('./routes/routeBlacklistedProfile');
 const ectagEmployeeRouter = require('./routes/routeECTAGEmployee');
-
+const ectagEmployeeProfileRouter = require('./routes/routeECTAGEmployeeProfile');
 // sid.signature
 
 
@@ -59,14 +63,17 @@ app.use('/', loginRouter);
 app.use('/', homeRouter);
 app.use('/', logoutRouter);
 app.use('/', applicantsRouter);
+app.use('/', profileApplicantRouter);
 app.use('/', companyRouter);
 app.use('/', companyEditRouter);
 app.use('/', calendarRouter);
 app.use('/', recordsRouter);
-app.use('/', profileRouter);
+app.use('/', recordProfileRouter);
 app.use('/', addEmployeeRouter);
 app.use('/', blacklistedRouter);
+app.use('/', blacklistedProfileRouter);
 app.use('/', ectagEmployeeRouter);
+app.use('/', ectagEmployeeProfileRouter);
 app.get('/', (req,res) => {
     const { userId } = req.session;
     res.redirect('/login')
