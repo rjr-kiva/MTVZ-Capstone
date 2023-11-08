@@ -45,7 +45,7 @@ const applicantsRouter = require('./routes/routeApplicants');
 const profileApplicantRouter = require('./routes/routeApplicantProfile');
 const companyRouter = require('./routes/routeCompany');
 const companyEditRouter = require('./routes/routeCompanyEdit');
-const calendarRouter = require('./routes/routeCalendar');
+
 const recordsRouter = require('./routes/routeRecords');
 const recordProfileRouter = require('./routes/routeRecordProfile');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
@@ -66,7 +66,7 @@ app.use('/', applicantsRouter);
 app.use('/', profileApplicantRouter);
 app.use('/', companyRouter);
 app.use('/', companyEditRouter);
-app.use('/', calendarRouter);
+
 app.use('/', recordsRouter);
 app.use('/', recordProfileRouter);
 app.use('/', addEmployeeRouter);
