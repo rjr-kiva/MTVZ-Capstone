@@ -45,9 +45,10 @@ const applicantsRouter = require('./routes/routeApplicants');
 const profileApplicantRouter = require('./routes/routeApplicantProfile');
 const companyRouter = require('./routes/routeCompany');
 const companyEditRouter = require('./routes/routeCompanyEdit');
-
 const recordsRouter = require('./routes/routeRecords');
 const recordProfileRouter = require('./routes/routeRecordProfile');
+const rpEmploymentHistory = require('./routes/routeRPEmploymentHistory');
+const addEmploymentHistory = require('./routes/routeAddEmploymentHistory');
 const addEmployeeRouter = require('./routes/routeAddEmployee');
 const blacklistedRouter = require('./routes/routeBlacklisted');
 const blacklistedProfileRouter = require('./routes/routeBlacklistedProfile');
@@ -66,9 +67,10 @@ app.use('/', applicantsRouter);
 app.use('/', profileApplicantRouter);
 app.use('/', companyRouter);
 app.use('/', companyEditRouter);
-
 app.use('/', recordsRouter);
 app.use('/', recordProfileRouter);
+app.use('/', rpEmploymentHistory)
+app.use('/', addEmploymentHistory)
 app.use('/', addEmployeeRouter);
 app.use('/', blacklistedRouter);
 app.use('/', blacklistedProfileRouter);

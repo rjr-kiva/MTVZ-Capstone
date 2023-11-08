@@ -57,6 +57,10 @@ model Employee_Data {
   pagibigNo       String?
   position        String?
   status          String?
+  companyName     String[]
+  companyStartDate String[]
+  companyEndDate   String[]
+  companyRemarks  String[]
 }
 
 model Blacklisted_Data {
@@ -79,7 +83,7 @@ model Blacklisted_Data {
 
 model Company_Data {
   id              String @id @default(auto()) @map("_id") @db.ObjectId
-  companyName     String?
+  companyName     String? @unique
   companyAddress  String?
   contactNo       String?
   contactPerson   String?

@@ -5386,6 +5386,8 @@ a.btn.btn-apply:hover {
 }
 .btn-secondary {
     background: #DC3545;
+	border: 1px;
+	padding: 12px 15px;
 }
 .customize_popup button.btn.btn-secondary:hover {
     background: transparent;
@@ -6036,7 +6038,7 @@ a.btn.btn-head:hover {
 	box-shadow: 0 4px 10px 0 rgb(137 137 137 / 25%);
 }
 .btn-add {
-    background: #FF8D07;
+    background: #00882E;
     color: #fff;
     padding: 10px;
     box-shadow: 0 4px 10px 0 rgb(137 137 137 / 25%);
