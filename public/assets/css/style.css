@@ -3544,7 +3544,8 @@ table.table-inbox tbody tr.checked {
 	min-height: 100vh;
 }
 .logo-dark{
-	max-width: 180px;
+	max-width: 500px;
+	max-height: auto;
 	margin: auto;
     display: block;
 }
