@@ -14,7 +14,7 @@ var prisma = new PrismaClient();
 const bcrypt = require('bcrypt')
 
 exports.getAddEmployee = (req, res) => {
-    res.render('viewAddEmployee', {userData: req.session.userData, purpose: "Applicant"});
+    res.render('viewAddEmployee', { userData: req.session.userData, purpose: "Applicant" });
 }
 
 exports.postAddEmployee = async (req, res) => {
@@ -40,30 +40,87 @@ exports.postAddEmployee = async (req, res) => {
     });
 
     console.log("lastName: " + lastname + "\n",
-                "firstName: " + firstname + "\n", 
-                "middleName: " + middlename + "\n", 
-                "age: " + age + "\n",
-                "sex: " + sex + "\n",
-                "dateofbirth: " + dateofbirth + "\n",
-                "address: " + address + "\n",
-                "contactNumber: " + contactNumber + "\n",
-                "Position: " + Position + "\n",
-                "SSS: " + SSS + "\n",
-                "Pagibig: " + Pagibig + "\n",
-                "PhilHealth: " + PhilHealth)
+        "firstName: " + firstname + "\n",
+        "middleName: " + middlename + "\n",
+        "age: " + age + "\n",
+        "sex: " + sex + "\n",
+        "dateofbirth: " + dateofbirth + "\n",
+        "address: " + address + "\n",
+        "contactNumber: " + contactNumber + "\n",
+        "Position: " + Position + "\n",
+        "SSS: " + SSS + "\n",
+        "Pagibig: " + Pagibig + "\n",
+        "PhilHealth: " + PhilHealth)
 
     console.log("Record added successfully.")
+
+    const date = new Date()
+    const getYear = date.getFullYear()
+    const getMonth = date.getMonth() + 1
+
+    const yearChecker = await prisma.applicantDate_Counter.findUnique({
+        where: {
+            year: getYear
+        }
+    });
+
+    if (!yearChecker) {
+        const newYear = await prisma.applicantDate_Counter.create({
+            data: {
+                year: getYear,
+                jan: 0,
+                feb: 0,
+                mar: 0,
+                apr: 0,
+                may: 0,
+                jun: 0,
+                jul: 0,
+                aug: 0,
+                sep: 0,
+                oct: 0,
+                nov: 0,
+                dec: 0,
+            }
+        })
+    }
+
+    if (getMonth == 1) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { jan: { increment: 1 } } })
+    } else if (getMonth == 2) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { feb: { increment: 1 } } })
+    } else if (getMonth == 3) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { mar: { increment: 1 } } })
+    } else if (getMonth == 4) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { apr: { increment: 1 } } })
+    } else if (getMonth == 5) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { may: { increment: 1 } } })
+    } else if (getMonth == 6) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { jun: { increment: 1 } } })
+    } else if (getMonth == 7) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { jul: { increment: 1 } } })
+    } else if (getMonth == 8) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { aug: { increment: 1 } } })
+    } else if (getMonth == 9) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { sep: { increment: 1 } } })
+    } else if (getMonth == 10) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { oct: { increment: 1 } } })
+    } else if (getMonth == 11) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { nov: { increment: 1 } } })
+    } else if (getMonth == 12) {
+        const updateCounter = await prisma.applicantDate_Counter.update({ where: { year: getYear }, data: { dec: { increment: 1 } } })
+    }
+
 
     res.redirect('/applicants')
 }
 
 exports.getAddECTAGEmployee = (req, res) => {
-    res.render('viewAddEmployee', {userData: req.session.userData, purpose: "ECTAG"});
+    res.render('viewAddEmployee', { userData: req.session.userData, purpose: "ECTAG" });
 }
 
 exports.postAddECTAGEmployee = async (req, res) => {
 
-    const {email, password, name, age, contactNumber, address, gender, role} = req.body;
+    const { email, password, name, age, contactNumber, address, gender, role } = req.body;
 
     const hashword = await bcrypt.hash(password, 10)
 
@@ -73,7 +130,7 @@ exports.postAddECTAGEmployee = async (req, res) => {
             password: hashword,
             name: name,
             age: age,
-            contactNo:  contactNumber,
+            contactNo: contactNumber,
             address: address,
             gender: gender,
             role: role,
@@ -130,7 +187,7 @@ exports.postUpload = (req, res) => {
             Authorization: 'Basic ' + Buffer.from(api_key + ':').toString('base64'),
         },
     };
-    
+
     // Use Promise.all to send both requests simultaneously
     Promise.all([
         sendRequest(options1),
@@ -157,7 +214,7 @@ exports.postUpload = (req, res) => {
             res.status(500).json({ error: 'Error processing the file' });
         });
 
-        
+
 }
 
 function sendRequest(options) {
@@ -237,16 +294,16 @@ function extractDataFromModel2(ocrResult) {
                     break;
                 case 'First_Name':
                     extractedData.First_Name = text;
-                break;
+                    break;
                 case 'Last_Name':
                     extractedData.Last_Name = text;
-                break;
+                    break;
                 case 'Middle_Name':
                     extractedData.Middle_Name = text;
-                break;
+                    break;
                 case 'Position':
                     extractedData.Position = text;
-                break;
+                    break;
                 default:
                     // Handle other labels from the second model if needed
                     break;
@@ -279,14 +336,14 @@ function extractDataFromModel3(ocrResult) {
                 case 'Pagibig_No': // New field from the third model
                     extractedData.Pagibig_No = text;
                     break;
-                case 'PhilHealth_No': 
+                case 'PhilHealth_No':
                     extractedData.PhilHealth_No = text;
                     break;
-                case 'SSS_No': 
+                case 'SSS_No':
                     extractedData.SSS_No = text;
                     break;
-              
-              
+
+
                 default:
                     // Handle other labels from the third model if needed
                     break;
