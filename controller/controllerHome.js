@@ -7,8 +7,20 @@ exports.getHome = async (req, res) => {
     const companies = await prisma.company_Data.findMany()
     const blacklist = await prisma.blacklisted_Data.findMany()
     const ectag = await prisma.user_Data.findMany()
+    const ectagAdmin = await prisma.user_Data.findMany({
+        where: {
+            OR: [
+                {
+                    role: "HR Assistant"
+                },
+                {
+                    role: "HR Head"
+                }
+            ]
+        }
+    })
 
-    res.render('viewHome', {userData: req.session.userData, employees: employees, companies: companies, blacklist: blacklist, ectag: ectag});
+    res.render('viewHome', {userData: req.session.userData, employees: employees, companies: companies, blacklist: blacklist, ectag: ectag, ectagAdmin: ectagAdmin});
 }
 
 exports.postHome = (req, res) => {
