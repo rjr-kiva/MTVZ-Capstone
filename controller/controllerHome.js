@@ -2,7 +2,8 @@ const { PrismaClient } = require('@prisma/client');
 var prisma = new PrismaClient();
 
 exports.getHome = async (req, res) => {
-
+    
+    const applicants = await prisma.applicant_Data.findMany()
     const employees = await prisma.employee_Data.findMany()
     const companies = await prisma.company_Data.findMany()
     const blacklist = await prisma.blacklisted_Data.findMany()
@@ -20,7 +21,7 @@ exports.getHome = async (req, res) => {
         }
     })
 
-    res.render('viewHome', {userData: req.session.userData, employees: employees, companies: companies, blacklist: blacklist, ectag: ectag, ectagAdmin: ectagAdmin});
+    res.render('viewHome', {userData: req.session.userData, applicants: applicants, employees: employees, companies: companies, blacklist: blacklist, ectag: ectag, ectagAdmin: ectagAdmin});
 }
 
 exports.postHome = (req, res) => {
