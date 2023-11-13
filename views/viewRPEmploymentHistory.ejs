@@ -187,10 +187,17 @@
                                     <label class="employee_count"><%= profileData.companyName.length %> Employment History Record</label>
                                 </div>
                                 <div class="head-link-set col-xl-3 col-sm-8 col-12 ">
-                                    <a class="btn-add" href="/add-employment-history/<%= profileData.id %>"><i data-feather="plus"></i> Add Employment History</a>
+                                    <a class="btn-add" href="/add-employment-history/<%= profileData.id %>"><i data-feather="plus"></i>Add Employment History</a>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+                            <div class="row">
+                                <div id="myPlot" style="width: 100%;;"></div>
+                            </div>
+                        </div>
+                        
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="card">
                                 <div class="table-responsive">
@@ -211,7 +218,7 @@
                                              
                                             <% for(let i = 0; i < profileData.companyName.length; i++ ) { %>
                                             <tr>
-                                                <td><label><%= profileData.companyName[i] %></label></td>
+                                                <td><label id="companyNAME"><%= profileData.companyName[i] %></label></td>
                                                 <td><label><%= profileData.companyStartDate[i] %></label></td>
                                                 <td><label><%= profileData.companyEndDate[i] %></label></td>
                                                 <td><label><%= profileData.companyRemarks[i] %></label></td>
@@ -228,6 +235,41 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- === UnCHARTed Area === -->
+
+                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+                <script> 
+                  
+                    var profileDataCN = "<%= profileData.companyName%>";
+                    var profileDataRM = "<%= profileData.companyRemarks%>";
+                    var companyNAMEE = profileDataCN.split(",")
+                    var companyREMARKSS = profileDataRM.split(",")
+
+                    const xArray = companyNAMEE;
+                    const yArray = companyREMARKSS;
+                    
+                    // Define Data
+                    const data = [{
+                      x: xArray,
+                      y: yArray,
+                      mode:"lines",
+                      line: {shape: "spline"},
+                    }];
+                    
+                    // Define Layout
+                    const layout = {
+                      xaxis: { title: "Companies"},
+                      yaxis: {range: [0, 100], title: "Rating"},  
+                      title: "Employee's Rating" //title: "<%= profileData.lastName %>, <%= profileData.firstName %> <%= profileData.middleName %> Remarks"
+                    };
+                    
+                    // Display using Plotly
+                    Plotly.newPlot("myPlot", data, layout);
+                    </script>
+
+                <!-- === UnCHARTed Area === -->
 
                 <script data-cfasync="false"
                     src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
