@@ -270,6 +270,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <% if(userData.role == "Admin") { %>
+
                     <div class="row">
                         <div class="col-xl-6 col-sm-12 col-12 d-flex">
                             <div class="card card-list flex-fill">
@@ -277,14 +280,19 @@
                                     <h4 class="card-title">HR. Department Employees</h4>
                                 </div>
                                 <div class="card-body">
+                                    <% ectag.forEach((dataInfo)=>{ %> 
                                     <div class="team-list">
                                         <div class="team-view">
                                             <div class="team-img">
-                                                <img src="assets/img/profiles/avatar-03.jpg" alt="avatar" />
+                                                <% if (dataInfo.gender=="Male" ) { %>
+                                                    <img src="assets/img/profiles/hrMale.png" alt="">
+                                                <% } else if (dataInfo.gender=="Female" ) { %>
+                                                    <img src="assets/img/profiles/hrFemale.png" alt="">
+                                                <% } %>
                                             </div>
                                             <div class="team-content">
-                                                <label>Maria Cotton</label>
-                                                <span>PHP</span>
+                                                <label><%= dataInfo.name %></label>
+                                                <span><%= dataInfo.role %></span>
                                             </div>
                                         </div>
                                         <div class="team-action">
@@ -294,237 +302,18 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="team-list">
-                                        <div class="team-view">
-                                            <div class="team-img">
-                                                <img src="assets/img/profiles/avatar-04.jpg" alt="avatar" />
-                                            </div>
-                                            <div class="team-content">
-                                                <label>Linda Craver</label>
-                                                <span>IOS</span>
-                                            </div>
-                                        </div>
-                                        <div class="team-action">
-                                            <ul>
-                                                <li><a><i data-feather="trash-2"></i></a></li>
-                                                <li><a><i data-feather="edit-2"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="team-list">
-                                        <div class="team-view">
-                                            <div class="team-img">
-                                                <img src="assets/img/profiles/avatar-06.jpg" alt="avatar" />
-                                            </div>
-                                            <div class="team-content">
-                                                <label>Jenni Sims</label>
-                                                <span>Android</span>
-                                            </div>
-                                        </div>
-                                        <div class="team-action">
-                                            <ul>
-                                                <li><a><i data-feather="trash-2"></i></a></li>
-                                                <li><a><i data-feather="edit-2"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="team-list">
-                                        <div class="team-view">
-                                            <div class="team-img">
-                                                <img src="assets/img/profiles/avatar-11.jpg" alt="avatar" />
-                                            </div>
-                                            <div class="team-content">
-                                                <label>Danny</label>
-                                                <span>Design</span>
-                                            </div>
-                                        </div>
-                                        <div class="team-action">
-                                            <ul>
-                                                <li><a><i data-feather="trash-2"></i></a></li>
-                                                <li><a><i data-feather="edit-2"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <% }) %>
                                 </div>
+
+                               
+
                             </div>
                         </div>
-                        <div class="col-xl-3 col-sm-12 col-12 d-flex">
-                            <div class="card card-list flex-fill">
-                                <div class="card-header">
-                                    <div class="">
-                                        <h4 class="card-title">Log In Time</h3>
-                                    </div>
-                                </div>
-                                <div class="card-body dash-activity">
-                                    <div class="slimscroll activity_scroll">
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-02.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>2 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-05.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>3 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-07.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>4 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-08.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>5 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-09.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>6 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-10.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>2 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-12.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>3 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-13.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>4 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="leave-viewall activit">
-                                        <a>View all <img src="assets/img/right-arrow.png" class="ml-2" alt="arrow"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-12 col-12 d-flex">
-                            <div class="card card-list flex-fill">
-                                <div class="card-header">
-                                    <div class="">
-                                        <h4 class="card-title">Log Out Time</h3>
-                                    </div>
-                                </div>
-                                <div class="card-body dash-activity">
-                                    <div class="slimscroll activity_scroll">
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-02.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>2 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-05.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>3 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-07.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>4 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-08.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>5 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-09.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>6 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-10.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>2 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-12.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>3 hours ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="activity-set">
-                                            <div class="activity-img">
-                                                <img src="assets/img/profiles/avatar-13.jpg" alt="avatar">
-                                            </div>
-                                            <div class="activity-content">
-                                                <label>Lorem ipsum dolor sit amet,</label>
-                                                <span>4 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="leave-viewall activit">
-                                        <a>View all <img src="assets/img/right-arrow.png" class="ml-2" alt="arrow"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
+
+                    <% } %>
+
                 </div>
             </div>
         </div>
