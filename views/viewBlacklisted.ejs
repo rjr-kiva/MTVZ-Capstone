@@ -49,8 +49,8 @@
 
                 <div class="top-nav-search">
                     <form>
-                        <input type="text" class="form-control" placeholder="">
-                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                        <input type="text" class="form-control" id="searchBar" name="search" onkeyup="search_Record()">
+                        <button class="btn" type="submit" disabled><i class="fas fa-search"></i></button>
                     </form>
                 </div>
 
@@ -191,13 +191,13 @@
                                         </thead>
                                         <tbody>
                                             <% blacklistedRecords.forEach((dataInfo) =>  {%>
-                                            <tr>
+                                            <tr class="searchUnique">
                                                 <td>
                                                     <div class="table-img">
                                                         <a href="/blacklisted-profile/<%= dataInfo.id %>"><img
                                                                 src="/assets/img/profiles/avatar-10.jpg" alt="profile"
                                                                 class="img-table"></a>
-                                                        <label> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
+                                                        <label class="nameSearch"> <%= dataInfo.lastName%>, <%= dataInfo.firstName%> <%= dataInfo.middleName%></label>
                                                     </div>
                                                 </td>
                                                 <td class="tab-select">
@@ -224,6 +224,25 @@
             </div>
 
         </div>
+
+        <script>
+            function search_Record() {
+                let input = document.getElementById('searchBar').value
+                input = input.toLowerCase();
+                let x = document.getElementsByClassName('nameSearch');
+                let e = document.getElementsByClassName('searchUnique');
+
+                for (i = 0; i < x.length; i++) {
+                    if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                        x[i].style.display = "none";
+                        e[i].style.display = "none";
+                    }else{
+                        x[i].style.display = "";
+                        e[i].style.display = "";
+                    }
+                }
+            }
+        </script>
 
 
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

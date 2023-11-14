@@ -47,8 +47,8 @@
 
                 <div class="top-nav-search">
                     <form>
-                        <input type="text" class="form-control" placeholder="">
-                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                        <input type="text" class="form-control" id="searchBar" name="search" onkeyup="search_Record()">
+                        <button class="btn" type="submit" disabled><i class="fas fa-search"></i></button>
                     </form>
                 </div>
 
@@ -184,19 +184,19 @@
 
 
                         <% companyList.forEach((dataInfo)=> { %>
-                            <div class="col-xl-12 col-sm-12 col-12 ">
+                            <div class="col-xl-12 col-sm-12 col-12 searchUnique">
                                 <div class="row">
                                     <div class="col-xl-12 col-sm-12 col-12 d-flex ">
                                         <div class="card card-lists flex-fill">
                                             <div class="card-header">
-                                                <h2 class="card-titles">
+                                                <h2 class="card-titles nameSearch">
                                                     <%= dataInfo.companyName %>
                                                 </h2>
                                                 <!-- FOR ADMIN ONLY --> <a href="/edit-company/<%= dataInfo.id %>" class="edit-link"> <i
                                                         data-feather="edit"></i></a>
                                             </div>
                                             <div class="card-body">
-                                                <div class="row">
+                                                <div class="row" class="searchUnique">
                                                     <div class="col-xl-6 col-sm-12 col-12 d-flex ">
                                                         <div class="member-registor flex-fill">
                                                             <ul>
@@ -384,6 +384,24 @@
 
                     </div>
 
+                    <script>
+                        function search_Record() {
+                            let input = document.getElementById('searchBar').value
+                            input = input.toLowerCase();
+                            let x = document.getElementsByClassName('nameSearch');
+                            let e = document.getElementsByClassName('searchUnique');
+            
+                            for (i = 0; i < x.length; i++) {
+                                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                                    x[i].style.display = "none";
+                                    e[i].style.display = "none";
+                                }else{
+                                    x[i].style.display = "";
+                                    e[i].style.display = "";
+                                }
+                            }
+                        }
+                    </script>
 
                     <script data-cfasync="false"
                         src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
