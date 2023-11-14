@@ -165,7 +165,15 @@
                                                 class="mr-3" alt="breadcrumb" />Home</a></li>
                                     <li class="breadcrumb-item active">Dashboard</li>
                                 </ul>
-                                <h3>HR Manager Dashboard</h3>
+                                <h3>
+                                    <% if(userData.role == "Admin" ) { %>
+                                        Admin Dashboard
+                                    <% } else if(userData.role == "HR Head" ) { %>
+                                        HR Head Dashboard
+                                    <% } else if(userData.role == "HR Assistant" ) { %>
+                                        HR Assistant Dashboard
+                                    <% } %>
+                                </h3>
                             </div>
                         </div>
 
