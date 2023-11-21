@@ -9,9 +9,9 @@ exports.getAddEmploymentHistory = async (req, res) => {
 
 exports.postAddEmploymentHistory = async (req, res) => {
 
-    const { companyName, companyStartDate, companyEndDate, companyRemarks} = req.body;
+    const { companyName, companyStartDate, companyEndDate, companyRatings} = req.body;
 
-    const employmenthistoryArray = [companyName, companyStartDate, companyEndDate, companyRemarks]
+    const employmenthistoryArray = [companyName, companyStartDate, companyEndDate, companyRatings]
 
     console.log(employmenthistoryArray)
 
@@ -20,7 +20,7 @@ exports.postAddEmploymentHistory = async (req, res) => {
     profileData.companyName.push(companyName)
     profileData.companyStartDate.push(companyStartDate)
     profileData.companyEndDate.push(companyEndDate)
-    profileData.companyRemarks.push(companyRemarks)
+    profileData.companyRatings.push(companyRatings)
     
     const employmentHistoryUpdate = await prisma.employee_Data.update({
         where: {
@@ -30,7 +30,7 @@ exports.postAddEmploymentHistory = async (req, res) => {
             companyName: profileData.companyName,
             companyStartDate: profileData.companyStartDate,
             companyEndDate: profileData.companyEndDate,
-            companyRemarks: profileData.companyRemarks,
+            companyRatings: profileData.companyRatings,
         }
     })
 
@@ -45,14 +45,14 @@ exports.getUpdateEmploymentHistory = async (req, res) => {
 
 exports.postUpdateEmploymentHistory = async (req, res) => {
 
-    const { companyName, companyStartDate, companyEndDate, companyRemarks} = req.body;
+    const { companyName, companyStartDate, companyEndDate, companyRatings} = req.body;
 
     const profileData = await prisma.employee_Data.findUnique({ where: { id: req.params.id } });
 
     profileData.companyName[req.params.index] = companyName
     profileData.companyStartDate[req.params.index] = companyStartDate
     profileData.companyEndDate[req.params.index] = companyEndDate
-    profileData.companyRemarks[req.params.index] = companyRemarks
+    profileData.companyRatings[req.params.index] = companyRatings
     
     const employmentHistoryUpdate = await prisma.employee_Data.update({
         where: {
@@ -62,7 +62,7 @@ exports.postUpdateEmploymentHistory = async (req, res) => {
             companyName: profileData.companyName,
             companyStartDate: profileData.companyStartDate,
             companyEndDate: profileData.companyEndDate,
-            companyRemarks: profileData.companyRemarks,
+            companyRatings: profileData.companyRatings,
         }
     })
 

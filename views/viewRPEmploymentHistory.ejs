@@ -196,7 +196,7 @@
                                                 <th>Company Name</th>
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
-                                                <th>Remarks</th>
+                                                <th>Ratings</th>
                                                 <th style="color: red;">Edit History</th>
                                                 <!-- <% if(userData.role=="Admin" ) {%>
                                                 <th>Delete History</th>
@@ -210,7 +210,7 @@
                                                 <td><label id="companyNAME"><%= profileData.companyName[i] %></label></td>
                                                 <td><label><%= profileData.companyStartDate[i] %></label></td>
                                                 <td><label><%= profileData.companyEndDate[i] %></label></td>
-                                                <td><label><%= profileData.companyRemarks[i] %></label></td>
+                                                <td><label><%= profileData.companyRatings[i] %>%</label></td>
                                                 <td><a href="/update-employment-history/<%= profileData.id %>/<%= i %>" class="edit-link"><i data-feather="edit"></i></a></td>
                                                 <!-- <% if(userData.role=="Admin" ) {%>
                                                 <td><a href="/delete-employment-history/<%= profileData.id %>/<%= i %>" class="edit-link"><i data-feather="trash-2"></i></a></td>
@@ -232,12 +232,12 @@
                 <script> 
                   
                     var profileDataCN = "<%= profileData.companyName%>";
-                    var profileDataRM = "<%= profileData.companyRemarks%>";
+                    var profileDataRM = "<%= profileData.companyRatings%>";
                     var companyNAMEE = profileDataCN.split(",")
-                    var companyREMARKSS = profileDataRM.split(",")
+                    var companyRATINGSS = profileDataRM.split(",")
 
                     const xArray = companyNAMEE;
-                    const yArray = companyREMARKSS;
+                    const yArray = companyRATINGSS;
                     
                     // Define Data
                     const data = [{
