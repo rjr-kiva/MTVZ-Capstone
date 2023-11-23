@@ -126,22 +126,24 @@
                                     <a href="/applicants"><img src="assets/img/employee.svg" alt="sidebar_img"><span>
                                             Applicants</span></a>
                                 </li>
-                                <% if(userData.role=="Admin" ) {%>
-                                    <li class="active">
+                                <% if(userData.role=="Admin" || userData.role=="HR Head" ) {%>
+                                    <li>
                                         <a href="/company"><img src="/assets/img/company.svg"
                                                 alt="sidebar_img"><span>Company</span></a>
                                     </li>
-                                    <li>
-                                        <a href="/ectag-employee"><img src="/assets/img/employee.svg"
-                                                alt="sidebar_img"><span>
-                                                ECTAG Employee</span></a>
-                                    </li>
                                     <% } %>
+                                        <% if(userData.role=="Admin" ) {%>
+                                            <li <% if(profileData.status=="ECTAG" ) { %> class="active" <% } %> >
+                                                    <a href="/ectag-employee"><img src="/assets/img/employee.svg"
+                                                            alt="sidebar_img"><span>
+                                                            ECTAG Employee</span></a>
+                                            </li>
+                                            <% } %>
 
-                                        <li>
-                                            <a href="/records"><img src="/assets/img/report.svg"
-                                                    alt="sidebar_img"><span>Records</span></a>
-                                        </li>
+                                                <li>
+                                                    <a href="/records"><img src="/assets/img/report.svg"
+                                                            alt="sidebar_img"><span>Records</span></a>
+                                                </li>
                             </ul>
                             <ul class="logout">
                                 <li>
@@ -171,14 +173,24 @@
                         </div>
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
-                                <div class="col-xl-10 col-sm-6 col-12">
-                                    <label class="employee_count">
-                                        <%= companyList.length %> Companies Listed
-                                    </label>
-                                </div>
-                                <div class="head-link-set col-xl-2 col-sm-6 col-12 ">
-                                    <a class="btn-add" data-toggle="modal" data-target="#addcompany"> Add Company</a>
-                                </div>
+
+                                <% if(userData.role=="Admin" ) { %>
+                                    <div class="col-xl-10 col-sm-6 col-12">
+                                        <label class="employee_count">
+                                            <%= companyList.length %> Companies Listed
+                                        </label>
+                                    </div>
+                                    <div class="head-link-set col-xl-2 col-sm-6 col-12 ">
+                                        <a class="btn-add" data-toggle="modal" data-target="#addcompany"> Add
+                                            Company</a>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="col-xl-12 col-sm-12 col-12">
+                                            <label class="employee_count">
+                                                <%= companyList.length %> Companies Listed
+                                            </label>
+                                        </div>
+                                        <% } %>
                             </div>
                         </div>
 
@@ -192,8 +204,10 @@
                                                 <h2 class="card-titles nameSearch">
                                                     <%= dataInfo.companyName %>
                                                 </h2>
-                                                <!-- FOR ADMIN ONLY --> <a href="/edit-company/<%= dataInfo.id %>" class="edit-link"> <i
-                                                        data-feather="edit"></i></a>
+                                                <% if(userData.role=="Admin" ) {%>
+                                                    <a href="/edit-company/<%= dataInfo.id %>" class="edit-link"> <i
+                                                            data-feather="edit"></i></a>
+                                                    <% } %>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row" class="searchUnique">
@@ -390,12 +404,12 @@
                             input = input.toLowerCase();
                             let x = document.getElementsByClassName('nameSearch');
                             let e = document.getElementsByClassName('searchUnique');
-            
+
                             for (i = 0; i < x.length; i++) {
                                 if (!x[i].innerHTML.toLowerCase().includes(input)) {
                                     x[i].style.display = "none";
                                     e[i].style.display = "none";
-                                }else{
+                                } else {
                                     x[i].style.display = "";
                                     e[i].style.display = "";
                                 }
