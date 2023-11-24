@@ -175,7 +175,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% employeeECTAGInfo.forEach((dataInfo) =>  {%>
+                                            <% employeeECTAGInfo.forEach((dataInfo) =>  {
+                                                if(dataInfo.role != "Admin") {%>
                                             <tr>
                                                 <td>
                                                     <div class="table-img">
@@ -194,7 +195,7 @@
                                                 <td><label> <%= dataInfo.role %> </label></td>
                                         
                                             </tr>
-                                            <% }) %>
+                                            <% } }) %>
                                         </tbody>
                                     </table>
                                 </div>

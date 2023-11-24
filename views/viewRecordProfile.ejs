@@ -124,15 +124,14 @@
                                     </li>
                                     <% } %>
                                     <% if(userData.role=="Admin") {%>
-                                    <li <% if(profileData.status=="ECTAG" ) { %> class="active" <% } %> >
+                                    <li>
                                             <a href="/ectag-employee"><img src="/assets/img/employee.svg"
                                                     alt="sidebar_img"><span>
                                                     ECTAG Employee</span></a>
                                     </li>
                                     <% } %>
 
-                                        <li <% if(profileData.status=="Employee" || profileData.status=="Blacklisted" )
-                                            { %> class="active" <% } %> >
+                                        <li class="active">
                                                 <a href="/records"><img src="/assets/img/report.svg"
                                                         alt="sidebar_img"><span>Records</span></a>
                                         </li>

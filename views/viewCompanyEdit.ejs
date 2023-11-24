@@ -116,13 +116,13 @@
                                         Applicants</span></a>
                             </li>
                             <% if(userData.role=="Admin" || userData.role == "HR Head" ) {%>
-                                <li>
+                                <li class="active">
                                     <a href="/company"><img src="/assets/img/company.svg"
                                             alt="sidebar_img"><span>Company</span></a>
                                 </li>
                                 <% } %>
                                 <% if(userData.role=="Admin") {%>
-                                <li <% if(profileData.status=="ECTAG" ) { %> class="active" <% } %> >
+                                <li>
                                         <a href="/ectag-employee"><img src="/assets/img/employee.svg"
                                                 alt="sidebar_img"><span>
                                                 ECTAG Employee</span></a>
