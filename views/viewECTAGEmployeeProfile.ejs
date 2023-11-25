@@ -112,7 +112,7 @@
                                 <a href="/home"><img src="/assets/img/home.svg" alt="sidebar_img">
                                     <span>Dashboard</span></a>
                             </li>
-                            <li <% if(profileData.status == "Pending") { %> class="active" <% } %> >
+                            <li class="active">
                                 <a href="/applicants"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
                                     Applicants</span></a>
                             </li>
@@ -120,13 +120,13 @@
                                 <li>
                                     <a href="/company"><img src="/assets/img/company.svg" alt="sidebar_img"><span>Company</span></a>
                                 </li>
-                                <li <% if(profileData.status == "ECTAG") { %> class="active" <% } %> >
+                                <li class="active">
                                     <a href="/ectag-employee"><img src="/assets/img/employee.svg" alt="sidebar_img"><span>
                                             ECTAG Employee</span></a>
                                 </li>
                             <% } %>
 
-                            <li <% if(profileData.status == "Employee" || profileData.status == "Blacklisted" ) { %> class="active" <% } %> >
+                            <li>
                                 <a href="/records"><img src="/assets/img/report.svg"
                                         alt="sidebar_img"><span>Records</span></a>
                             </li>
