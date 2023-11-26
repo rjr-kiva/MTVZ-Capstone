@@ -25,7 +25,7 @@ const redirectHome = (req, res, next) => {
 
 // Configure Multer for file upload
 const storage = multer.diskStorage({
-    destination: './uploads',
+    destination: './public/uploads',
     filename: function (req, file, callback) {
         callback(null, uuidv4() + '-' + file.originalname);
     },
