@@ -219,7 +219,15 @@
                                              
                                             <% for(let i = 0; i < profileData.companyName.length; i++ ) { %>
                                             <tr>
-                                                <td><label id="companyNAME"><%= profileData.companyName[i] %></label></td>
+                                                <% companyNameView.forEach((dataInfo) => {
+                                                    
+                                                    if (profileData.companyName[i] == dataInfo.id){
+                                                        %><td><label id="companyNAME"><%= dataInfo.companyName %></label></td><%
+                                                        
+                                                    }
+                                                }) %>
+                                                
+                                                
                                                 <td><label><%= profileData.companyStartDate[i] %></label></td>
                                                 <td><label><%= profileData.companyEndDate[i] %></label></td>
                                                 <td><label><%= profileData.companyRatings[i] %>%</label></td>
@@ -242,15 +250,34 @@
                   
                     var profileDataCN = "<%= profileData.companyName%>";
                     var profileDataRM = "<%= profileData.companyRatings%>";
+                    var companyId = "<%= companyJustAnotherId%>";
+                    var companyList = "<%= companyJustAnotherName%>";
                     var companyNAMEE = profileDataCN.split(",")
                     var companyRATINGSS = profileDataRM.split(",")
+                    var companyIDD = companyId.split(",")
+                    var compantLISTT = companyList.split(",")
+                    var companyFinalList = []
 
-                    const xArray = companyNAMEE;
+                    for (let index = 0; index < companyNAMEE.length; index++) {
+                        for (let indexA = 0; indexA < companyIDD.length; indexA++) {
+                            if(companyNAMEE[index] == companyIDD[indexA]){
+                                companyFinalList.push(compantLISTT[indexA])
+                            }         
+                        }  
+                    }
+
+                    const xArray = companyFinalList;
                     const yArray = companyRATINGSS;
+                    
+                    var mixedArray = [];
+
+                    for (let index = 0; index < xArray.length; index++) {
+                        mixedArray.push(index+1 +": " + xArray[index])
+                    }
                     
                     // Define Data
                     const data = [{
-                      x: xArray,
+                      x: mixedArray,
                       y: yArray,
                       mode:"lines",
                       line: {shape: "spline"},

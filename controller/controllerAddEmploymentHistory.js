@@ -11,13 +11,17 @@ exports.postAddEmploymentHistory = async (req, res) => {
 
     const { companyName, companyStartDate, companyEndDate, companyRatings} = req.body;
 
-    const employmenthistoryArray = [companyName, companyStartDate, companyEndDate, companyRatings]
+    const companyID = await prisma.company_Data.findUnique({where: {companyName: companyName}})
+
+    // Can remove
+    const employmenthistoryArray = [companyID.id, companyStartDate, companyEndDate, companyRatings]
 
     console.log(employmenthistoryArray)
+    // Until here
 
     const profileData = await prisma.employee_Data.findUnique({ where: { id: req.params.id } });
 
-    profileData.companyName.push(companyName)
+    profileData.companyName.push(companyID.id)
     profileData.companyStartDate.push(companyStartDate)
     profileData.companyEndDate.push(companyEndDate)
     profileData.companyRatings.push(companyRatings)
@@ -45,11 +49,18 @@ exports.getUpdateEmploymentHistory = async (req, res) => {
 
 exports.postUpdateEmploymentHistory = async (req, res) => {
 
+    /*Note from Ksrk:
+        - Change reference from companyName to id instead
+    */
     const { companyName, companyStartDate, companyEndDate, companyRatings} = req.body;
 
     const profileData = await prisma.employee_Data.findUnique({ where: { id: req.params.id } });
 
-    profileData.companyName[req.params.index] = companyName
+    const companyID = await prisma.company_Data.findUnique({where: {companyName: companyName}})
+    console.log(companyName)
+    console.log(companyID)
+
+    profileData.companyName[req.params.index] = companyID.id
     profileData.companyStartDate[req.params.index] = companyStartDate
     profileData.companyEndDate[req.params.index] = companyEndDate
     profileData.companyRatings[req.params.index] = companyRatings

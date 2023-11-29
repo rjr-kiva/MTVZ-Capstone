@@ -259,7 +259,7 @@
                                                                             </option>
                                                                             <% companyList.forEach((companyInfo)=> { %>
                                                                                 <option 
-                                                                                <% if (companyInfo.companyName == profileData.companyName[index] ) { %> selected <% } %> >
+                                                                                <% if (companyInfo.id == profileData.companyName[index] ) { %> selected <% } %> >
                                                                                     <%= companyInfo.companyName %>
                                                                                 </option>
                                                                                 <% }) %>

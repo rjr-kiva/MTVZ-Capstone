@@ -16,12 +16,14 @@ exports.postEditCompany = async (req, res) => {
 
     const { companyName, companyAddress, contactNo, contactPerson} = req.body
 
+    const companyNameTrimmed = companyName.trim()
+
     const updateCompany = await prisma.company_Data.update({
         where:{
             id: req.params.id
         },
         data: {
-            companyName: companyName,
+            companyName: companyNameTrimmed,
             companyAddress: companyAddress,
             contactNo: contactNo,
             contactPerson: contactPerson

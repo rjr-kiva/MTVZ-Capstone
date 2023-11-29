@@ -281,6 +281,7 @@
                                                 <button type="submit" class="btn btn-apply">Add Employee</button>
                                                 <a href="/applicants" class="btn btn-secondary ">Cancel</a>
                                             </div>
+                                            <input type="hidden" id="fileName" name="fileName">
                                         </form>
                                     </div>
 
@@ -404,7 +405,9 @@
                 const fileInput = document.getElementById('fileInput');
                 const file = fileInput.files[0];
 
-                console.log(file);
+                console.log(file.name);
+                const test = file.name;
+                document.getElementById('hiddenName').value = test;
 
                 if (!file) {
                     alert('Please select a file to upload.');

@@ -12,9 +12,11 @@ exports.postaddCompany = async (req, res) => {
 
     const { companyName, companyAddress, contactNo, contactPerson} = req.body
 
+    const companyNameTrimmed = companyName.trim()
+
     const newCompany = await prisma.company_Data.create({
         data: {
-            companyName: companyName,
+            companyName: companyNameTrimmed,
             companyAddress: companyAddress,
             contactNo: contactNo,
             contactPerson: contactPerson

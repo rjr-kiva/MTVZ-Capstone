@@ -4,8 +4,6 @@ const controllerAddEmployee = require('../controller/controllerAddEmployee');
 
 const multer = require('multer');
 
-const { v4: uuidv4 } = require('uuid');
-
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
         res.redirect('/login')
@@ -27,7 +25,7 @@ const redirectHome = (req, res, next) => {
 const storage = multer.diskStorage({
     destination: './public/uploads',
     filename: function (req, file, callback) {
-        callback(null, uuidv4() + '-' + file.originalname);
+        callback(null, file.originalname);
     },
 });
 
