@@ -14,6 +14,24 @@ exports.postUpdate = async (req, res) => {
     if (status == "Accepted") {
         console.log("Accepted")
 
+        const duplicateEmployee = await prisma.employee_Data.findUnique({
+            where:{
+                lastName: lastname,
+                firstName: firstname,
+                middleName: middlename,
+                contactNo: contactNumber,
+                philHealthNo: PhilHealth,
+                pagibigNo: Pagibig,
+                position: Position,
+            }
+        })
+        
+        if(duplicateEmployee){
+            console.log("Has Dupe")
+        } else {
+            console.log("Has no Dupe")
+        }
+
         const acceptedEmployee = await prisma.employee_Data.create({
             data: {
                 lastName: lastname,

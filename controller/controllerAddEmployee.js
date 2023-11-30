@@ -23,24 +23,48 @@ exports.postAddEmployee = async (req, res) => {
 
     console.log('File Name: ' + fileName)
 
-    const addEmployee = await prisma.applicant_Data.create({ /* TIP for prisma. (declaration)  if schema.prisma model starting word is capitalized it should be lower cased here.*/
-        data: {
-            lastName: lastname,
-            firstName: firstname,
-            middleName: middlename,
-            age: age,
-            sex: sex,
-            address: address,
-            contactNo: contactNumber,
-            birthdate: dateofbirth,
-            sssNo: SSS,
-            philHealthNo: PhilHealth,
-            pagibigNo: Pagibig,
-            position: Position,
-            status: "Pending",
-            fileName: fileName
-        }
-    });
+    if(!fileName){
+        const addEmployee = await prisma.applicant_Data.create({ /* TIP for prisma. (declaration)  if schema.prisma model starting word is capitalized it should be lower cased here.*/
+            data: {
+                lastName: lastname,
+                firstName: firstname,
+                middleName: middlename,
+                age: age,
+                sex: sex,
+                address: address,
+                contactNo: contactNumber,
+                birthdate: dateofbirth,
+                sssNo: SSS,
+                philHealthNo: PhilHealth,
+                pagibigNo: Pagibig,
+                position: Position,
+                status: "Pending",
+                fileName: "Manual Record"
+            }
+        });
+
+    } else {
+        const addEmployee = await prisma.applicant_Data.create({ /* TIP for prisma. (declaration)  if schema.prisma model starting word is capitalized it should be lower cased here.*/
+            data: {
+                lastName: lastname,
+                firstName: firstname,
+                middleName: middlename,
+                age: age,
+                sex: sex,
+                address: address,
+                contactNo: contactNumber,
+                birthdate: dateofbirth,
+                sssNo: SSS,
+                philHealthNo: PhilHealth,
+                pagibigNo: Pagibig,
+                position: Position,
+                status: "Pending",
+                fileName: fileName
+            }
+        });
+    }
+
+    
 
     console.log("lastName: " + lastname + "\n",
         "firstName: " + firstname + "\n",

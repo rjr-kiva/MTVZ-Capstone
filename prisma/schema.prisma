@@ -40,6 +40,7 @@ model Applicant_Data {
   pagibigNo       String?
   position        String?
   status          String?
+  fileName        String?
 }
 
 model Employee_Data {
