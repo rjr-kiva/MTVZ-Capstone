@@ -22,4 +22,6 @@ const redirectHome = (req, res, next) => {
 router.get('/ectag-employee', redirectLogin, controllerECTAGEmployee.getECTAGEmployee);
 router.post('/ectag-employee', controllerECTAGEmployee.postECTAGEmployee);
 
+router.get('/ectag-employee/:id', controllerECTAGEmployee.deleteECTAGEmployee);
+
 module.exports = router;

@@ -10,3 +10,11 @@ exports.getECTAGEmployee = async (req, res) => {
 exports.postECTAGEmployee = (req, res) => {
     res.render('viewApplicants');
 }
+
+exports.deleteECTAGEmployee = async (req, res) => {
+
+    const deleteEmployee = await prisma.user_Data.delete({where: {
+        id: req.params.id
+    }})
+    res.redirect('/ectag-employee');
+}
