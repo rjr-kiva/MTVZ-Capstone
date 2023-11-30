@@ -405,13 +405,12 @@
                 const fileInput = document.getElementById('fileInput');
                 const file = fileInput.files[0];
 
-                console.log(file.name);
-                const test = file.name;
-                document.getElementById('hiddenName').value = test;
-
                 if (!file) {
                     alert('Please select a file to upload.');
                     return;
+                } else {
+                    const test = file.name;
+                    document.getElementById('fileName').value = test;
                 }
 
                 // Show the loading indicator
