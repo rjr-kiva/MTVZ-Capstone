@@ -21,8 +21,6 @@ exports.postAddEmployee = async (req, res) => {
 
     const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, fileName } = req.body;
 
-    console.log('File Name: ' + fileName)
-
     if(!fileName){
         const addEmployee = await prisma.applicant_Data.create({ /* TIP for prisma. (declaration)  if schema.prisma model starting word is capitalized it should be lower cased here.*/
             data: {

@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const flush = require('connect-flash')
 
 //const TWO_HOURS = 1000 * 60 * 60 * 2
 
@@ -58,6 +59,7 @@ const ectagEmployeeProfileRouter = require('./routes/routeECTAGEmployeeProfile')
 
 
 //use
+app.use(flush());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', loginRouter);

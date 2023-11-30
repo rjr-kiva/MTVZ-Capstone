@@ -15,7 +15,7 @@ exports.postUpdate = async (req, res) => {
         console.log("Accepted")
 
         const duplicateEmployee = await prisma.employee_Data.findFirst({
-            where:{
+            where: {
                 lastName: lastname,
                 firstName: firstname,
                 middleName: middlename,
@@ -24,38 +24,66 @@ exports.postUpdate = async (req, res) => {
                 position: Position,
             }
         })
-        
-        if(duplicateEmployee){
+
+        if (duplicateEmployee) {
+            req.flash('message', 'Existing record found, duplicate record deleted.');
             console.log("Has Dupe")
+
+            const deleteEmployee = await prisma.applicant_Data.delete({
+                where: { id: req.params.id },
+            });
+
         } else {
             console.log("Has no Dupe")
+
+            const acceptedEmployee = await prisma.employee_Data.create({
+                data: {
+                    lastName: lastname,
+                    firstName: firstname,
+                    middleName: middlename,
+                    age: age,
+                    sex: sex,
+                    address: address,
+                    contactNo: contactNumber,
+                    birthdate: dateofbirth,
+                    sssNo: SSS,
+                    philHealthNo: PhilHealth,
+                    pagibigNo: Pagibig,
+                    position: Position,
+                    status: "Employee"
+                }
+            })
+
+            const deleteEmployee = await prisma.applicant_Data.delete({
+                where: { id: req.params.id },
+            });
+
         }
 
-        const acceptedEmployee = await prisma.employee_Data.create({
-            data: {
+    } else if (status == "Blacklisted") {
+        console.log("Blacklisted")
+
+        const duplicateEmployee = await prisma.blacklisted_Data.findFirst({
+            where: {
                 lastName: lastname,
                 firstName: firstname,
                 middleName: middlename,
-                age: age,
-                sex: sex,
-                address: address,
-                contactNo: contactNumber,
-                birthdate: dateofbirth,
-                sssNo: SSS,
                 philHealthNo: PhilHealth,
                 pagibigNo: Pagibig,
                 position: Position,
-                status: "Employee"
             }
         })
 
-        const deleteEmployee = await prisma.applicant_Data.delete({
-            where: { id: req.params.id },
-        });
+        if (duplicateEmployee) {
+            req.flash('message', 'Existing record found, duplicate record deleted.');
+            console.log("Has Dupe")
 
-    } else
-        if (status == "Blacklisted") {
-            console.log("Blacklisted")
+            const deleteEmployee = await prisma.applicant_Data.delete({
+                where: { id: req.params.id },
+            });
+
+        } else {
+            console.log("Has no Dupe")
 
             const blacklistedEmployee = await prisma.blacklisted_Data.create({
                 data: {
@@ -75,36 +103,38 @@ exports.postUpdate = async (req, res) => {
                     reason: reason
                 }
             })
-
+    
             const deleteEmployee = await prisma.applicant_Data.delete({
                 where: { id: req.params.id },
             });
-        } else
-            if (status == "Pending") {
-                console.log("Pending")
 
-                const pendingEmployee = await prisma.applicant_Data.update({
-                    where:{
-                        id: req.params.id
-                    },
-                    data: {
-                        lastName: lastname,
-                        firstName: firstname,
-                        middleName: middlename,
-                        age: age,
-                        sex: sex,
-                        address: address,
-                        contactNo: contactNumber,
-                        birthdate: dateofbirth,
-                        sssNo: SSS,
-                        philHealthNo: PhilHealth,
-                        pagibigNo: Pagibig,
-                        position: Position,
-                        status: "Pending",
-                    }
-                });
+        }  
 
+    } else if (status == "Pending") {
+        console.log("Pending")
+
+        const pendingEmployee = await prisma.applicant_Data.update({
+            where: {
+                id: req.params.id
+            },
+            data: {
+                lastName: lastname,
+                firstName: firstname,
+                middleName: middlename,
+                age: age,
+                sex: sex,
+                address: address,
+                contactNo: contactNumber,
+                birthdate: dateofbirth,
+                sssNo: SSS,
+                philHealthNo: PhilHealth,
+                pagibigNo: Pagibig,
+                position: Position,
+                status: "Pending",
             }
+        });
+
+    }
 
     res.redirect('/applicants')
 
