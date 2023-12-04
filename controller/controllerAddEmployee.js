@@ -37,7 +37,7 @@ exports.postAddEmployee = async (req, res) => {
                 pagibigNo: Pagibig,
                 position: Position,
                 status: "Pending",
-                fileName: "Manual Record"
+                fileName: "Manual Record",
             }
         });
 
@@ -57,7 +57,7 @@ exports.postAddEmployee = async (req, res) => {
                 pagibigNo: Pagibig,
                 position: Position,
                 status: "Pending",
-                fileName: fileName
+                fileName: fileName,
             }
         });
     }

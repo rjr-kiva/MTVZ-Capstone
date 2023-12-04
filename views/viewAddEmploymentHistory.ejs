@@ -158,7 +158,7 @@
 
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <div class="col-xl-12 col-sm-12 col-12 ">
+                                                        <div class="col-xl-8 col-sm-8 col-8 ">
                                                             <div class="form-group">
                                                                 <label>Company Name</label>
                                                                 <select id="companyName" name="companyName">
@@ -169,6 +169,13 @@
                                                                         </option>
                                                                         <% }) %>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-sm-4 col-4 ">
+                                                            <div class="form-group">
+                                                                <label>Currently Deployed?</label>
+                                                                <label><input type="radio" id="currentlyDep" name="currentlyDep" value="true"> True</label>
+                                                                    <label><input type="radio" id="currentlyDep" name="currentlyDep" value="false"> False</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -251,7 +258,7 @@
 
                                                         <div class="card-body">
                                                             <div class="row">
-                                                                <div class="col-xl-12 col-sm-12 col-12 ">
+                                                                <div <% if((profileData.companyName.length - 1) == index) { %> class="col-xl-8 col-sm-8 col-8 " <% } else { %> class="col-xl-12 col-sm-12 col-12 " <% } %>>
                                                                     <div class="form-group">
                                                                         <label>Company Name</label>
                                                                         <select id="companyName" name="companyName">
@@ -266,12 +273,21 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
+                                                                <% if((profileData.companyName.length - 1) == index) { %>
+                                                                <div class="col-xl-4 col-sm-4 col-4 ">
+                                                                    <div class="form-group">
+                                                                        <label>Currently Deployed?</label>
+                                                                        <label><input type="radio" id="currentlyDep" name="currentlyDep" value="true" <% if (profileData.currentlyDeployed == "true" ) { %> checked <% } %>> True</label>
+                                                                        <label><input type="radio" id="currentlyDep" name="currentlyDep" value="false" <% if (profileData.currentlyDeployed == "false" ) { %> checked <% } %>> False</label>
+                                                                    </div>
+                                                                </div>
+                                                                <% } %>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-xl-4 col-sm-12 col-12 ">
                                                                     <div class="form-group">
                                                                         <label>Start Date</label>
-                                                                        <input type="text" id="companyStartDate"
+                                                                        <input type="date" id="companyStartDate"
                                                                             name="companyStartDate"
                                                                             value="<%= profileData.companyStartDate[index] %>"
                                                                             placeholder="Start Date" required>
@@ -280,7 +296,7 @@
                                                                 <div class="col-xl-4 col-sm-12 col-12 ">
                                                                     <div class="form-group">
                                                                         <label>End Date</label>
-                                                                        <input type="text" id="companyEndDate"
+                                                                        <input type="date" id="companyEndDate"
                                                                             name="companyEndDate"
                                                                             value="<%= profileData.companyEndDate[index] %>"
                                                                             placeholder="End Date" required>

@@ -9,7 +9,9 @@ exports.getAddEmploymentHistory = async (req, res) => {
 
 exports.postAddEmploymentHistory = async (req, res) => {
 
-    const { companyName, companyStartDate, companyEndDate, companyRatings} = req.body;
+    const { companyName, companyStartDate, companyEndDate, companyRatings, currentlyDep} = req.body;
+
+    console.log(currentlyDep)
 
     const companyID = await prisma.company_Data.findUnique({where: {companyName: companyName}})
 
@@ -35,6 +37,7 @@ exports.postAddEmploymentHistory = async (req, res) => {
             companyStartDate: profileData.companyStartDate,
             companyEndDate: profileData.companyEndDate,
             companyRatings: profileData.companyRatings,
+            currentlyDeployed: currentlyDep
         }
     })
 
@@ -49,10 +52,7 @@ exports.getUpdateEmploymentHistory = async (req, res) => {
 
 exports.postUpdateEmploymentHistory = async (req, res) => {
 
-    /*Note from Ksrk:
-        - Change reference from companyName to id instead
-    */
-    const { companyName, companyStartDate, companyEndDate, companyRatings} = req.body;
+    const { companyName, companyStartDate, companyEndDate, companyRatings, currentlyDep} = req.body;
 
     const profileData = await prisma.employee_Data.findUnique({ where: { id: req.params.id } });
 
@@ -74,6 +74,7 @@ exports.postUpdateEmploymentHistory = async (req, res) => {
             companyStartDate: profileData.companyStartDate,
             companyEndDate: profileData.companyEndDate,
             companyRatings: profileData.companyRatings,
+            currentlyDeployed: currentlyDep
         }
     })
 

@@ -62,6 +62,7 @@ model Employee_Data {
   companyStartDate String[]
   companyEndDate   String[]
   companyRatings  String[]
+  currentlyDeployed String
 }
 
 model Blacklisted_Data {

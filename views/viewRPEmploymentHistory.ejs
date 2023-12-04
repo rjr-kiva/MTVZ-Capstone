@@ -185,11 +185,12 @@
 
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
-                                <div class="col-xl-9 col-sm-8 col-12 ">
+                                <div class="col-xl-10 col-sm-8 col-12 ">
                                     <label class="employee_count"><%= profileData.companyName.length %> Employment History Record</label>
                                 </div>
-                                <div class="head-link-set col-xl-3 col-sm-8 col-12 ">
-                                    <a class="btn-add" href="/add-employment-history/<%= profileData.id %>"><i data-feather="plus"></i>Add Employment History</a>
+                                <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
+                                    <button type="button" class="btn btn-add" onclick="window.location='/add-employment-history/<%= profileData.id %>'" <% if(profileData.currentlyDeployed == "true") { %> disabled <% } %> ><% if(profileData.currentlyDeployed == "true") { %> Employee Currently Deployed <% } else { %> <i data-feather="plus"></i>Add Employment History <% } %> </button>
+                                    
                                 </div>
                             </div>
                         </div>
