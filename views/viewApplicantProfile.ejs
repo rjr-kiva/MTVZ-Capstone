@@ -155,8 +155,8 @@
                             <h3>
                                     Applicant Profile         
                             </h3>
-                            <% if (profileData.fileName != "Manual Record") { %>
-                            <button type="button" class="btn btn-apply" onClick="window.open('/uploads/img016.jpg')">View Resume</button>
+                            <% if (profileData.fileName) { %>
+                            <button type="button" class="btn btn-apply" onClick="window.open('/uploads/<%= profileData.fileName%>')">View Resume</button>
                             <% } %>
                         </div>
                     </div>

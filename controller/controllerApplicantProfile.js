@@ -36,6 +36,12 @@ exports.postUpdate = async (req, res) => {
         } else {
             console.log("Has no Dupe")
 
+            const date = new Date();
+
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const hiredDate = months[date.getMonth()] + " " + date.getDate()  + ", " + date.getFullYear()
+
             const acceptedEmployee = await prisma.employee_Data.create({
                 data: {
                     lastName: lastname,
@@ -50,7 +56,9 @@ exports.postUpdate = async (req, res) => {
                     philHealthNo: PhilHealth,
                     pagibigNo: Pagibig,
                     position: Position,
-                    status: "Employee"
+                    status: "Employee",
+                    currentlyDeployed: "false",
+                    dateHired: hiredDate
                 }
             })
 

@@ -45,12 +45,35 @@
                 </div>
 
                 <div class="top-nav-search">
-                    <form>
-                        <input type="text" class="form-control" id="searchBar" name="search" onkeyup="search_Record()">
-                        <button class="btn" type="submit" disabled><i class="fas fa-search"></i></button>
-                    </form>
+                    <div class="row">
+                        <div class="col-xl-8 col-sm-8 col-8">
+                            <form>
+                                <input type="text" class="form-control" id="searchBar" name="search" onkeyup="search_Record()">
+                                <button class="btn" type="submit" disabled><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div>
+                            <form>
+                                <select class="form-control" id="searchMonth" onchange="search_Months()">
+                                    <option></option>
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                            </form>
+                        </div>
+                        
+                    </div>
                 </div>
-
 
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fas fa-bars"></i>
@@ -183,9 +206,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Age </th>
                                                 <th>Address</th>
                                                 <th>Contact Number</th>
+                                                <th>Date Hired</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -200,13 +223,13 @@
                                                     </div>
                                                 </td>
                                                 <td class="tab-select">
-                                                    <label><%= dataInfo.age %> </label>
-                                                </td>
-                                                <td>
-                                                    <label><%= dataInfo.address %></label>
+                                                    <label><%= dataInfo.address %> </label>
                                                 </td>
                                                 <td>
                                                     <label><%= dataInfo.contactNo %></label>
+                                                </td>
+                                                <td>
+                                                    <label class="monthSearch"><%= dataInfo.dateHired %></label>
                                                 </td>
                                             </tr>
                                             <% }) %>
@@ -226,6 +249,24 @@
                 let input = document.getElementById('searchBar').value
                 input = input.toLowerCase();
                 let x = document.getElementsByClassName('nameSearch');
+                let e = document.getElementsByClassName('searchUnique');
+
+                for (i = 0; i < x.length; i++) {
+                    if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                        x[i].style.display = "none";
+                        e[i].style.display = "none";
+                    }else{
+                        x[i].style.display = "";
+                        e[i].style.display = "";
+                    }
+                }
+            }
+
+            function search_Months() {
+                let input = document.getElementById('searchMonth').value
+                console.log(input)
+                input = input.toLowerCase();
+                let x = document.getElementsByClassName('monthSearch');
                 let e = document.getElementsByClassName('searchUnique');
 
                 for (i = 0; i < x.length; i++) {
