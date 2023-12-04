@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 var prisma = new PrismaClient();
 
 exports.getRecords = async (req, res) => {
-    const employeeRecords = await prisma.employee_Data.findMany();
+    const employeeRecords = await prisma.employee_Data.findMany({orderBy: {lastName: 'asc'}});
     res.render('viewRecords', {userData: req.session.userData, employeeRecords: employeeRecords});
 }
 
