@@ -186,7 +186,7 @@
                         <div class="col-xl-12 col-sm-12 col-12 mb-4">
                             <div class="row">
                                 <div class="col-xl-10 col-sm-8 col-12 ">
-                                    <label class="employee_count"><%= profileData.companyName.length %> Employment History Record</label>
+                                    <label class="employee_count"><%= profileData.lastName %>, <%= profileData.firstName %> <%= profileData.middleName %> : <%= profileData.companyName.length %> Employment Record</label>
                                 </div>
                                 <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
                                     <button type="button" class="btn btn-add" onclick="window.location='/add-employment-history/<%= profileData.id %>'" <% if(profileData.currentlyDeployed == "true") { %> disabled <% } %> ><% if(profileData.currentlyDeployed == "true") { %> Employee Currently Deployed <% } else { %> <i data-feather="plus"></i>Add Employment History <% } %> </button>
@@ -213,6 +213,7 @@
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
                                                 <th>Ratings</th>
+                                                <th>Remark</th>
                                                 <% if(userData.role != "HR Assistant") { %><th style="color: red;">Edit History</th><% } %>
                                             </tr>
                                         </thead>
@@ -232,6 +233,22 @@
                                                 <td><label><%= profileData.companyStartDate[i] %></label></td>
                                                 <td><label><%= profileData.companyEndDate[i] %></label></td>
                                                 <td><label><%= profileData.companyRatings[i] %>%</label></td>
+                                                <td>
+                                                    <label>
+                                                        <% if(profileData.companyRatings[i] <= 20) {%>
+                                                            Poor Performance
+                                                        <% } else if(profileData.companyRatings[i] <= 40) {%>
+                                                            Below Average
+                                                        <% } else if(profileData.companyRatings[i] <= 60) {%>
+                                                            Average
+                                                        <% } else if(profileData.companyRatings[i] <= 80) {%>
+                                                            Above Average
+                                                        <% } else if(profileData.companyRatings[i] <= 100) {%>
+                                                            Excellent Performance
+                                                        <% } %>
+
+                                                    </label>
+                                                </td>
                                                 <% if(userData.role != "HR Assistant") { %><td><a href="/update-employment-history/<%= profileData.id %>/<%= i %>" class="edit-link"><i data-feather="edit"></i></a></td><% } %>
                                             </tr>
                                             <% } %>
