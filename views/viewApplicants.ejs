@@ -208,8 +208,13 @@
                                                     <td>
                                                         <div class="table-img">
                                                             <a href="/applicant-profile/<%= dataInfo.id %>">
-                                                                <img src="assets/img/profiles/avatar-13.jpg"
+                                                                <% if(dataInfo.sex == "Male") { %>
+                                                                    <img src="/assets/img/profiles/maleEmp.png"
                                                                     alt="profile" class="img-table" />
+                                                                <% } else if(dataInfo.sex == "Female") { %>
+                                                                    <img src="/assets/img/profiles/femaleEmp.png"
+                                                                    alt="profile" class="img-table" />
+                                                                <% } %>
                                                             </a>
                                                             <label class="nameSearch">
                                                                 <%= dataInfo.lastName%>, <%= dataInfo.firstName%>
