@@ -190,7 +190,33 @@
                                 </div>
                                 <div class="head-link-set col-xl-2 col-sm-8 col-12 ">
                                     <button type="button" class="btn btn-add" onclick="window.location='/add-employment-history/<%= profileData.id %>'" <% if(profileData.currentlyDeployed == "true") { %> disabled <% } %> ><% if(profileData.currentlyDeployed == "true") { %> Employee Currently Deployed <% } else { %> <i data-feather="plus"></i>Add Employment History <% } %> </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-8 col-12 ">
+                                    <% var avg = 0;
+                                    profileData.companyRatings.forEach((dataInfo)=>{
+                                        avg = avg + parseInt(dataInfo);
+                                    }) 
+                                    avg = avg / profileData.companyRatings.length 
                                     
+                                    if(avg <= 20){
+                                        var string = "Unfortunately, " + profileData.lastName + " performance falls within the Poor Performance range with an average rating of " + avg + "%. This score suggests significant challenges in various aspects of the role. Frequent errors, a lack of attention to detail, and poor time management are apparent in Alex's work. Communication issues may also be impacting effectiveness. Immediate intervention is necessary to address these fundamental challenges and guide Alex towards improvement. Consider implementing targeted training and support to help Alex meet the basic expectations of the role."
+                                    } else if (avg <= 40){
+                                        var string = profileData.lastName + "'s performance is in the Below Average range with an average rating of " + avg + "%, indicating some competency but lacking consistency. There are difficulties with certain tasks, requiring additional supervision and guidance. Improvement is needed in areas such as problem-solving and overall task performance. Providing ongoing support and targeted training may be beneficial to help "+ profileData.lastName +" address these challenges."
+                                    }else if (avg <= 60){
+                                        var string = profileData.lastName + " performance falls within the Average range with an average rating of " + avg + "%, meaning they are meeting basic expectations. Work is generally adequate, with occasional errors."+ profileData.lastName +" follows instructions, but there is room for improvement in terms of consistency and possibly taking on more responsibilities. Communication skills are satisfactory but may benefit from refinement in certain areas."
+                                    } else if (avg <= 80){
+                                        var string = profile.lastName + "'s performance is Above Average with an average rating of " + avg + "%, consistently exceeding expectations in various tasks. They demonstrate good technical skills, take initiative, and may go beyond assigned duties. Time management is effective, and deadlines are consistently met. Communication skills are strong, contributing to effective collaboration."
+                                    } else if (avg <= 100){
+                                        var string = "Congratulations to "+ profileData.lastName +" for achieving an Excellent Performance rating with an average rating of " + avg + "%! This indicates exceptional performance across all aspects of the job. "+ profileData.lastName +" consistently exceeds expectations, delivering high-quality work. They proactively identify and solve problems, take initiative, and excel in time management. Outstanding communication skills contribute to effective collaboration with others. "+ profileData.lastName +" is a valuable asset to the team."
+                                    } else {
+                                        var string = "Currently has no Record"
+                                    }%>
+                                    <label class="employee_count"><%= string %></label>
                                 </div>
                             </div>
                         </div>
