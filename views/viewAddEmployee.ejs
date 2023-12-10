@@ -214,8 +214,11 @@
                                                         <div class="col-xl-4 col-sm-12 col-12 ">
                                                             <div class="form-group">
                                                                 <label>Sex</label>
-                                                                <input type="text" id="sex" name="sex" placeholder="Sex"
-                                                                    required>
+                                                                <select id="sex" name="sex" required>
+                                                                    <option id="default" value= "" disabled selected>Select a Gender</option>
+                                                                    <option id="Male" value="Male">Male</option>
+                                                                    <option id="Female" value="Female">Female</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-4 col-sm-12 col-12 ">
@@ -473,7 +476,7 @@
                 const addressElement = document.getElementById('address');
                 const contactNumberElement = document.getElementById('contactNumber');
                 const emailElement = document.getElementById('dateofbirth');
-                const sexElement = document.getElementById('sex');
+                //const sexElement = document.getElementById('sex');
                 const ageElement = document.getElementById('age');
                 const positionElement = document.getElementById('Position');
                 const SSSElement = document.getElementById('SSS');
@@ -488,7 +491,7 @@
                 contactNumberElement.value = data.Contact_Number;
                 emailElement.value = data.Date_of_Birth;
                 positionElement.value = data.Position;
-                sexElement.value = data.Sex;
+                //sexElement.value = data.Sex;
                 //educationElement.value = data.Education;
                 ageElement.value = data.Age;
                 // added 3rd model
@@ -498,15 +501,22 @@
 
                 if (data.Sex) {
                     const sexValue = data.Sex.toLowerCase();
-                    if (sexValue === 'f') {
-                        sexElement.value = 'Female';
-                    } else if (sexValue === 'm') {
-                        sexElement.value = 'Male';
+                    if (sexValue === 'f' || sexValue == "female") {
+                        //sexElement.value = 'Female';
+                        document.getElementById('default').removeAttribute('selected')
+                        document.getElementById('Male').removeAttribute('selected')
+                        document.getElementById('Female').setAttribute('selected','selected')
+                    } else if (sexValue === 'm' || sexValue == "male") {
+                        //sexElement.value = 'Male';
+                        document.getElementById('default').removeAttribute('selected')
+                        document.getElementById('Female').removeAttribute('selected')
+                        document.getElementById('Male').setAttribute('selected','selected')
                     } else {
-                        sexElement.value = data.Sex;
+                        //sexElement.value = data.Sex;
+                        document.getElementById('default').setAttribute('selected','selected')
                     }
                 } else {
-                    sexElement.value = '';
+                    document.getElementById('default').setAttribute('selected','selected')
                 }
             }
         </script>
