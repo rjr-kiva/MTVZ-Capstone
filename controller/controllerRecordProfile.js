@@ -9,7 +9,7 @@ exports.getEmployeeProfile = async (req, res) => {
 }
 
 exports.postEmployeeUpdate = async (req, res) => {
-    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, status } = req.body;
+    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, status, eduBG } = req.body;
 
 
     const updateEmployee = await prisma.employee_Data.update({
@@ -29,7 +29,8 @@ exports.postEmployeeUpdate = async (req, res) => {
             philHealthNo: PhilHealth,
             pagibigNo: Pagibig,
             position: Position,
-            status: "Employee"
+            status: "Employee",
+            educationalBG: eduBG
         }
     })
 

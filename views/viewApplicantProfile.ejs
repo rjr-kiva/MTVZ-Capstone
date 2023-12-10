@@ -276,7 +276,7 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-sm-12 col-12 ">
                                                 <div class="form-group">
-                                                    <select name="status" id="status" onchange="reasonBlacklisted()" <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
+                                                    <select name="status" id="status" onchange="applicantStatus()" required <% if (userData.role=="HR Assistant" ){ %> disabled <% } %> >
                                                         <option value="Pending" <% if(profileData.status=="Pending" ) {%>
                                                             selected <% } %> > Pending </option>
                                                         <option value="Accepted" <% if(profileData.status=="Accepted" ) {%>
@@ -286,9 +286,20 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-8 col-sm-12 col-12 ">
-                                                <div class="form-group">
-                                                    <input type="text" id="reason" name="reason" style="visibility: hidden;" placeholder="Reason for Blacklisting">
+                                            <div class="col-xl-8 col-sm-12 col-12">
+                                                <div class="form-group" id="blacklistDiv" style="display: none;">
+                                                    <!-- Blacklist Option -->
+                                                    <input type="text" id="reason" name="reason" placeholder="Reason for Blacklisting" required>
+                                                </div>
+                                                <div class="form-group" id="acceptedDiv" style="display: none;"> 
+                                                    <!-- Accepted Option -->
+                                                    <select id="eduBG" name="eduBG" required>
+                                                        <option value="Gradeshool Graduate">Gradeshool Graduate</option>
+                                                        <option value="Highschool Graduate">Highschool Graduate</option>
+                                                        <option value="Highschool Undergraduate">Highschool Undergraduate</option>
+                                                        <option value="College Graduate">College Graduate</option>
+                                                        <option value="College Undergraduate">College Undergraduate</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,12 +323,20 @@
 
             <script>
             
-                function reasonBlacklisted() {
+                function applicantStatus() {
                     var currentStatus = document.getElementById("status");
+                    var acceptedDiv = document.getElementById("acceptedDiv");
+                    var blacklistDiv = document.getElementById("blacklistDiv");
+                    if (currentStatus.value == "Accepted"){
+                        acceptedDiv.style.display="block";
+                    } else {
+                        acceptedDiv.style.display="none";
+                    }
+                    
                     if (currentStatus.value == "Blacklisted"){
-                        document.getElementById("reason").style.visibility="visible";
+                        blacklistDiv.style.display="block";  
                     }else{
-                        document.getElementById("reason").style.visibility="hidden";
+                        blacklistDiv.style.display="none";
                     }
                 }
     

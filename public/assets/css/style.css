@@ -2681,7 +2681,7 @@ html.menu-opened body {
     border-radius: 50px;
     color: #333;
     height: 40px;
-    padding: 10px 15px 10px 50px;
+    padding: 10px 15px 10px;
     box-shadow: rgb(209 243 255 / 33%) 0px 0.2px 3px 0.1px;
 }
 .top-nav-search .btn {

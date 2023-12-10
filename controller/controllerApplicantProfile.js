@@ -9,7 +9,7 @@ exports.getApplicantProfile = async (req, res) => {
 }
 
 exports.postUpdate = async (req, res) => {
-    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, status, reason } = req.body;
+    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, status, reason, eduBG } = req.body;
 
     if (status == "Accepted") {
         console.log("Accepted")
@@ -58,7 +58,8 @@ exports.postUpdate = async (req, res) => {
                     position: Position,
                     status: "Employee",
                     currentlyDeployed: "false",
-                    dateHired: hiredDate
+                    dateHired: hiredDate,
+                    educationalBG: eduBG
                 }
             })
 
