@@ -289,11 +289,12 @@
                                             <div class="col-xl-8 col-sm-12 col-12">
                                                 <div class="form-group" id="blacklistDiv" style="display: none;">
                                                     <!-- Blacklist Option -->
-                                                    <input type="text" id="reason" name="reason" placeholder="Reason for Blacklisting" required>
+                                                    <input type="text" id="reason" name="reason" placeholder="Reason for Blacklisting">
                                                 </div>
                                                 <div class="form-group" id="acceptedDiv" style="display: none;"> 
                                                     <!-- Accepted Option -->
-                                                    <select id="eduBG" name="eduBG" required>
+                                                    <select id="eduBG" name="eduBG">
+                                                        <option value="" disabled selected>Select Highest Educational Attainment</option>
                                                         <option value="Gradeshool Graduate">Gradeshool Graduate</option>
                                                         <option value="Highschool Graduate">Highschool Graduate</option>
                                                         <option value="Highschool Undergraduate">Highschool Undergraduate</option>
@@ -329,14 +330,18 @@
                     var blacklistDiv = document.getElementById("blacklistDiv");
                     if (currentStatus.value == "Accepted"){
                         acceptedDiv.style.display="block";
+                        document.getElementById("eduBG").setAttribute("required","required")
                     } else {
                         acceptedDiv.style.display="none";
+                        document.getElementById("eduBG").removeAttribute("required")
                     }
                     
                     if (currentStatus.value == "Blacklisted"){
                         blacklistDiv.style.display="block";  
+                        document.getElementById("reason").setAttribute("required","required")
                     }else{
                         blacklistDiv.style.display="none";
+                        document.getElementById("reason").removeAttribute("required")
                     }
                 }
     
