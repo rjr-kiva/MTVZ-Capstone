@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const flush = require('connect-flash')
+const flush = require('connect-flash');
+const nodemailer = require("nodemailer");
 
 //const TWO_HOURS = 1000 * 60 * 60 * 2
 
@@ -80,7 +81,7 @@ app.use('/', ectagEmployeeRouter);
 app.use('/', ectagEmployeeProfileRouter);
 app.get('/', (req,res) => {
     const { userId } = req.session;
-    res.redirect('/login')
+    res.render('viewLogin', {purpose: "Login"})
 })
 
 

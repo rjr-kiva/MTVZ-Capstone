@@ -21,5 +21,6 @@ const redirectHome = (req, res, next) => {
 
 router.get('/login', redirectHome, controllerLogin.getLogin); // can do /login or just /
 router.post('/login', redirectHome, controllerLogin.postLogin);
+router.post('/verify', redirectHome, controllerLogin.verifyLogin)
 
 module.exports = router;
