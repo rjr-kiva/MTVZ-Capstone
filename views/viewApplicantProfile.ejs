@@ -305,27 +305,35 @@
                                             </div>
                                         </div>
                                         <div id="acceptedExtra" style="display: none;">
-                                            <label><b>Employment Record : (From present work backward)</b></label>
-                                            <button type="button" onclick="addRecord()">Copium</button>
+                                            <div class="row">
+                                                <div class="col-xl-12 col-sm-12 col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="skillSet" name="skillSet" placeholder="Skills " required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br><label><b>Employment Record : (From present work backward)</b></label>
+                                            <button class="btn-tertiary" type="button" onclick="addRecord()">Add another Record</button>
+                                            <br><br>
                                             <div class="row" id="cloneDiv">
                                                 <div class="col-xl-3 col-sm-12 col-12">
                                                     <div class="form-group">
-                                                        <input type="text" placeholder="Company" id="prevCompany" name="prevCompany">
+                                                        <input type="text" placeholder="Company" id="prevCompany" name="prevCompany" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-sm-12 col-12">
                                                     <div class="form-group">
-                                                        <input type="text" placeholder="Position" id="prevPosition" name="prevPosition">
+                                                        <input type="text" placeholder="Position" id="prevPosition" name="prevPosition" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-sm-12 col-12">
                                                     <div class="form-group">
-                                                        <input type="date" placeholder="From" id="startDate" name="startDate">
+                                                        <input type="date" placeholder="From" id="startDate" name="startDate" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-3 col-sm-12 col-12">
                                                     <div class="form-group">
-                                                        <input type="date" placeholder="To" id="endDate" name="endDate">
+                                                        <input type="date" placeholder="To" id="endDate" name="endDate" required>
                                                     </div>
                                                 </div>
                                             </div>

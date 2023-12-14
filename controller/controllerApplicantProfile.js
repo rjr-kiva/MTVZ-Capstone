@@ -10,12 +10,18 @@ exports.getApplicantProfile = async (req, res) => {
 
 exports.postUpdate = async (req, res) => {
     const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, 
-        status, reason, eduBG, prevCompany, prevPosition, startDate, endDate} = req.body;
+        status, reason, eduBG, prevCompany, prevPosition, startDate, endDate, skillSet} = req.body;
 
     if (status == "Accepted") {
         console.log("Accepted")
 
-        console.log("prevCompany: " + prevCompany +" prevPosition: "+ prevPosition +" startDate: "+ startDate +" endDate: "+ endDate)
+        const prevCompanyLength = prevCompany.length;
+
+        var prevHistory = [];
+
+        for (let index = 0; index < prevCompanyLength; index++) {
+            prevHistory.push(prevCompany[index] +","+ prevPosition[index] +","+ startDate[index] +","+ endDate[index]);
+        }
 
         const duplicateEmployee = await prisma.employee_Data.findFirst({
             where: {
@@ -62,7 +68,9 @@ exports.postUpdate = async (req, res) => {
                     status: "Employee",
                     currentlyDeployed: "false",
                     dateHired: hiredDate,
-                    educationalBG: eduBG
+                    educationalBG: eduBG,
+                    prevHistory: prevHistory,
+                    skillSet: skillSet
                 }
             })
 

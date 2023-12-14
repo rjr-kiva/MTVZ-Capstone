@@ -312,6 +312,42 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <% for(let i = 0; i < profileData.prevHistory.length; i++) { %>
+                                            <% const data = profileData.prevHistory[i].split(",") %>
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-3 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Company" id="prevCompany" name="prevCompany" value="<%= data[0]%>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Position" id="prevPosition" name="prevPosition" value="<%= data[1]%>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="date" placeholder="From" id="startDate" name="startDate" value="<%= data[2]%>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <input type="date" placeholder="To" id="endDate" name="endDate" value="<%= data[3]%>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <% } %>
+
+                                        <div class="row">
+                                            <div class="col-xl-12 col-sm-12 col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="skillSet" name="skillSet" placeholder="Skills" value="<%= profileData.skillSet %>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </div>

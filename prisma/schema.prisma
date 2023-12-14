@@ -65,6 +65,8 @@ model Employee_Data {
   currentlyDeployed String
   dateHired       String
   educationalBG   String
+  prevHistory     String[]
+  skillSet        String
 }
 
 model Blacklisted_Data {

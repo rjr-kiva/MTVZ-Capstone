@@ -47,7 +47,7 @@ exports.postLogin = async (req, res) => {
                     },
                     to: [email],
                     subject: "Verify your Email",
-                    text: "Hello world?",
+                    text: "Verification Code: <b>" + generateCode + "</b>. ",
                     html: "Verification Code: <b>" + generateCode + "</b>. "
                 }
 

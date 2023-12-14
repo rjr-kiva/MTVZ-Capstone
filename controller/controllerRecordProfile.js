@@ -9,8 +9,16 @@ exports.getEmployeeProfile = async (req, res) => {
 }
 
 exports.postEmployeeUpdate = async (req, res) => {
-    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, status, eduBG } = req.body;
+    const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, 
+        status, eduBG, prevCompany, prevPosition, startDate, endDate, skillSet } = req.body;
 
+        const prevCompanyLength = prevCompany.length;
+        
+        var prevHistory = [];
+
+        for (let index = 0; index < prevCompanyLength; index++) {
+            prevHistory.push(prevCompany[index] +","+ prevPosition[index] +","+ startDate[index] +","+ endDate[index]);
+        }
 
     const updateEmployee = await prisma.employee_Data.update({
         where: {
@@ -30,7 +38,9 @@ exports.postEmployeeUpdate = async (req, res) => {
             pagibigNo: Pagibig,
             position: Position,
             status: "Employee",
-            educationalBG: eduBG
+            educationalBG: eduBG,
+            prevHistory: prevHistory,
+            skillSet: skillSet
         }
     })
 
