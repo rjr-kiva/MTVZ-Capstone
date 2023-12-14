@@ -304,6 +304,33 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div id="acceptedExtra" style="display: none;">
+                                            <label><b>Employment Record : (From present work backward)</b></label>
+                                            <button type="button" onclick="addRecord()">Copium</button>
+                                            <div class="row" id="cloneDiv">
+                                                <div class="col-xl-3 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Company" id="prevCompany" name="prevCompany">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Position" id="prevPosition" name="prevPosition">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <input type="date" placeholder="From" id="startDate" name="startDate">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <input type="date" placeholder="To" id="endDate" name="endDate">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -327,12 +354,15 @@
                 function applicantStatus() {
                     var currentStatus = document.getElementById("status");
                     var acceptedDiv = document.getElementById("acceptedDiv");
+                    var acceptedExtra = document.getElementById("acceptedExtra");
                     var blacklistDiv = document.getElementById("blacklistDiv");
                     if (currentStatus.value == "Accepted"){
                         acceptedDiv.style.display="block";
+                        acceptedExtra.style.display="block";
                         document.getElementById("eduBG").setAttribute("required","required")
                     } else {
                         acceptedDiv.style.display="none";
+                        acceptedExtra.style.display="none";
                         document.getElementById("eduBG").removeAttribute("required")
                     }
                     
@@ -343,6 +373,13 @@
                         blacklistDiv.style.display="none";
                         document.getElementById("reason").removeAttribute("required")
                     }
+                }
+
+                function addRecord(){
+                    console.log("heh")
+                    const div = document.getElementById("cloneDiv");
+                    const clone = div.cloneNode(true);
+                    document.getElementById("acceptedExtra").appendChild(clone)
                 }
     
             </script>
