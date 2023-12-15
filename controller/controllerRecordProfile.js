@@ -12,12 +12,20 @@ exports.postEmployeeUpdate = async (req, res) => {
     const { lastname, firstname, middlename, age, sex, dateofbirth, address, contactNumber, Position, SSS, Pagibig, PhilHealth, 
         status, eduBG, prevCompany, prevPosition, startDate, endDate, skillSet } = req.body;
 
-        const prevCompanyLength = prevCompany.length;
-        
+        const arrayChecker = Array.isArray(prevCompany);
+
         var prevHistory = [];
 
-        for (let index = 0; index < prevCompanyLength; index++) {
-            prevHistory.push(prevCompany[index] +","+ prevPosition[index] +","+ startDate[index] +","+ endDate[index]);
+        if(arrayChecker){
+
+            const prevCompanyLength = prevCompany.length;
+
+            for (let index = 0; index < prevCompanyLength; index++) {
+                prevHistory.push(prevCompany[index] +","+ prevPosition[index] +","+ startDate[index] +","+ endDate[index]);
+            }
+
+        } else {
+            prevHistory.push(prevCompany +","+ prevPosition +","+ startDate +","+ endDate);
         }
 
     const updateEmployee = await prisma.employee_Data.update({

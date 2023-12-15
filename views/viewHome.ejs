@@ -236,7 +236,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-6 d-flex mobile-h">
+                        <div class="col-xl-6 d-flex">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -279,6 +279,46 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="sales_chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 d-flex">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title">NUMBER OF EMPLOYEES IN EACH POSITION</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="position_chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 d-flex">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title">Total Male & Female Employees</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="maleFemale_chart"></div>
+                                    <div class="text-center text-muted">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mt-4">
+                                                    <p class="mb-2 text-truncate"><i
+                                                            class="fas fa-circle text-primary mr-1"></i> Male</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="mt-4">
+                                                    <p class="mb-2 text-truncate"><i
+                                                            class="fas fa-circle text-danger mr-1"></i> Female</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -419,6 +459,97 @@
                             height: 350, type: 'donut',
                         },
                         labels: ['Applicant', 'Employee', 'Blacklisted'],
+                        legend: {
+                            show: false
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+                var pieChart = new ApexCharts(pieCtx, pieConfig); pieChart.render();
+
+                // Position Bar Chart I guess
+
+                var noPosition = "<%= uniquePositions %>"
+                var noPeople = "<%= employeePos %>"
+
+                var uniquePositionsJs = noPosition.split(',')
+                var employeePosJs = noPeople.split(',')
+
+                var columnCtx = document.getElementById("position_chart"),
+                    columnConfig = {
+                        colors: ['#7638ff', '#fda600'],
+                        series: [{
+                            name: "Employees",
+                            type: "column",
+                            data: employeePosJs
+                        }],
+                        chart: {
+                            type: 'bar',
+                            fontFamily: 'Poppins, sans-serif',
+                            height: 350,
+                            toolbar: {
+                                show: false
+                            }
+                        },
+                        plotOptions: {
+                            bar: {
+                                horizontal: false,
+                                columnWidth: '50%',
+                                endingShape: 'rounded'
+                            },
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        stroke: {
+                            show: true,
+                            width: 2,
+                            colors: ['transparent']
+                        },
+                        xaxis: {
+                            categories: uniquePositionsJs,
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Number of Employees'
+                            }
+                        },
+                        fill: {
+                            opacity: 1
+                        },
+                        tooltip: {
+                            y: {
+                                formatter: function (val) {
+                                    return val
+                                }
+                            }
+                        }
+                    };
+                var columnChart = new ApexCharts(columnCtx, columnConfig); columnChart.render();
+                
+                // Male Female Chart
+
+                var maleEmployees = "<%= employeesMale %>"
+                var femaleEmployees = "<%= employeesFemale %>"
+
+                var pieCtx = document.getElementById("maleFemale_chart"),
+                    pieConfig = {
+                        colors: ['#007bff', '#dc3545'], //Male - Female
+                        series: [parseInt(maleEmployees), parseInt(femaleEmployees)],
+                        chart: {
+                            fontFamily: 'Poppins, sans-serif',
+                            height: 350, type: 'donut',
+                        },
+                        labels: ['Male Employees', 'Female Employees'],
                         legend: {
                             show: false
                         },
