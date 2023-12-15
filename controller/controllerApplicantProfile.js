@@ -15,12 +15,20 @@ exports.postUpdate = async (req, res) => {
     if (status == "Accepted") {
         console.log("Accepted")
 
-        const prevCompanyLength = prevCompany.length;
+        const arrayChecker = Array.isArray(prevCompany);
 
         var prevHistory = [];
 
-        for (let index = 0; index < prevCompanyLength; index++) {
-            prevHistory.push(prevCompany[index] +","+ prevPosition[index] +","+ startDate[index] +","+ endDate[index]);
+        if(arrayChecker){
+
+            const prevCompanyLength = prevCompany.length;
+
+            for (let index = 0; index < prevCompanyLength; index++) {
+                prevHistory.push(prevCompany[index] +","+ prevPosition[index] +","+ startDate[index] +","+ endDate[index]);
+            }
+
+        } else {
+            prevHistory.push(prevCompany +","+ prevPosition +","+ startDate +","+ endDate);
         }
 
         const duplicateEmployee = await prisma.employee_Data.findFirst({
